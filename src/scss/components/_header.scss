@@ -1,0 +1,72 @@
+@import "../variables";
+
+.header {
+  width: calc(100vw - 100px);
+  margin: 10px auto;
+
+  background-color: $background;
+  padding: 10px 20px 50px 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+      .header__right-block,
+      .categories {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  &__right-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  &__cart {
+    margin-right: 10px;
+    cursor: pointer;
+    :hover {
+      opacity: 0.8;
+      transition: all 0.3s ease-in-out;
+    }
+    svg {
+      color: $black;
+    }
+  }
+
+  &__logo {
+    display: flex;
+
+    img {
+      margin-right: 15px;
+    }
+
+    h1 {
+      color: #181818;
+      font-size: 24px;
+      letter-spacing: 1%;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    p {
+      color: #7b7b7b;
+      flex-direction: column;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__login {
+    cursor: pointer;
+    :hover {
+      opacity: 0.8;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
