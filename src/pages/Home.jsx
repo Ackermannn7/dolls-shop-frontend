@@ -5,8 +5,15 @@ import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
 import { productData, responsive } from "../assets/data/carousel";
 import { Product } from "../components/Product";
+import axios from "../axios";
 // import doll from "../assets/img/doll.jpg";
 const Home = () => {
+
+React.useEffect(()=>{
+axios.get("/dolls");
+
+}, []);
+
   const product = productData.map((obj) => <Product key={obj.id} {...obj} />);
   console.log(product);
   return (
