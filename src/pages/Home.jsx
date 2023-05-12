@@ -6,16 +6,21 @@ import Carousel from "react-multi-carousel";
 import { productData, responsive } from "../assets/data/carousel";
 import { Product } from "../components/Product";
 import axios from "../axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../redux/slices/dolls";
 // import doll from "../assets/img/doll.jpg";
 const Home = () => {
+  const dispatch = useDispatch();
+  const { dolls } = useSelector((state) => state.dolls);
+  const isProductLoading = dolls.status === "loading";
 
-React.useEffect(()=>{
-axios.get("/dolls");
+  React.useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
 
-}, []);
-
-  const product = productData.map((obj) => <Product key={obj.id} {...obj} />);
-  console.log(product);
+  // productData.map((obj) => (
+  //   <Product key={obj.id} isLoading {...obj} />
+  // ));
   return (
     <div className="wrapper">
       <Header />
@@ -46,7 +51,14 @@ axios.get("/dolls");
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            {product}
+            {(isProductLoading ? [...Array(5)] : dolls.items).map(
+              (obj, index) =>
+                isProductLoading ? (
+                  <Product key={index} isLoading={true} />
+                ) : (
+                  <Product key={obj.id} {...obj} />
+                )
+            )}
           </Carousel>
         </div>
         <div className="whyUs">
