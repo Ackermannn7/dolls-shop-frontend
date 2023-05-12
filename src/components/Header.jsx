@@ -16,9 +16,15 @@ export const Header = () => {
         </Link>
         <div className="categories">
           <ul>
-            <li>Dolls</li>
-            <li>Gallery</li>
-            <li>About us</li>
+            <Link>
+              <li>Dolls</li>
+            </Link>
+            <Link to="/gallery">
+              <li>Gallery</li>
+            </Link>
+            <Link to="/aboutus">
+              <li>About us</li>
+            </Link>
             <li>Language</li>
           </ul>
         </div>

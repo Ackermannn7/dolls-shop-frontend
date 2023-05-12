@@ -3,12 +3,11 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
-import { productData, responsive } from "../assets/data/carousel";
+import { responsive } from "../assets/data/carousel";
 import { Product } from "../components/Product";
-import axios from "../axios";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/slices/dolls";
-// import doll from "../assets/img/doll.jpg";
+
 const Home = () => {
   const dispatch = useDispatch();
   const { dolls } = useSelector((state) => state.dolls);
@@ -18,9 +17,6 @@ const Home = () => {
     dispatch(fetchProducts());
   }, []);
 
-  // productData.map((obj) => (
-  //   <Product key={obj.id} isLoading {...obj} />
-  // ));
   return (
     <div className="wrapper">
       <Header />
