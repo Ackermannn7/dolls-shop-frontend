@@ -1,4 +1,5 @@
 .card {
+  border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 320px;
   margin: auto 1rem;
@@ -11,6 +12,8 @@
   font-size: 1.2em;
 }
 .productImg {
+  border-radius: 10px 10px 0 0;
+
   width: 100%;
   height: 16em;
   object-fit: cover;
@@ -20,6 +23,7 @@
   font-size: 22px;
 }
 .button {
+  border-radius: 0 0 10px 10px;
   border: none;
   outline: 0;
   padding: 12px;

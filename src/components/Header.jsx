@@ -16,7 +16,7 @@ export const Header = () => {
         </Link>
         <div className="categories">
           <ul>
-            <Link to="/dolls-list">
+            <Link to="/dolls">
               <li>Dolls</li>
             </Link>
             <Link to="/gallery">

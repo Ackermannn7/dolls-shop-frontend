@@ -1,6 +1,4 @@
 import React from "react";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
 import { responsive } from "../assets/data/carousel";
@@ -19,8 +17,6 @@ const Home = () => {
 
   return (
     <div className="wrapper">
-      <Header />
-
       <div className="content">
         <div className="recommended">
           <div className="recommended__header">
@@ -91,7 +87,6 @@ const Home = () => {
           </p>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
