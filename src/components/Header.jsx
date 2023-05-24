@@ -1,7 +1,24 @@
 import { Search } from "./Search";
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo2.png";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectIsAuth } from "../redux/slices/authorization";
 export const Header = () => {
+  const isAuth = useSelector(selectIsAuth);
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.auth.data);
+
+  console.log(userData);
+
+  const onClickLogout = () => {
+    if (window.confirm("Are you sure you want to log out?")) {
+      dispatch(logout());
+      window.localStorage.removeItem("token");
+    }
+  };
   return (
     <div className="header">
       <div className="container">
@@ -63,36 +80,54 @@ export const Header = () => {
             </a>
           </div>
           <Search />
-          <Link to="/login">
-            <div className="header__login">
-              <svg
-                width="32px"
-                height="32px"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g id="style=fill">
-                  <g id="profile">
-                    <path
-                      id="vector (Stroke)"
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M6.75 6.5C6.75 3.6005 9.1005 1.25 12 1.25C14.8995 1.25 17.25 3.6005 17.25 6.5C17.25 9.3995 14.8995 11.75 12 11.75C9.1005 11.75 6.75 9.3995 6.75 6.5Z"
-                      fill="#000000"
-                    />
-                    <path
-                      id="rec (Stroke)"
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M4.25 18.5714C4.25 15.6325 6.63249 13.25 9.57143 13.25H14.4286C17.3675 13.25 19.75 15.6325 19.75 18.5714C19.75 20.8792 17.8792 22.75 15.5714 22.75H8.42857C6.12081 22.75 4.25 20.8792 4.25 18.5714Z"
-                      fill="#000000"
-                    />
-                  </g>
-                </g>
-              </svg>
+          {isAuth ? (
+            <div className="auth-user">
+              {userData.avatarUrl ? (
+                <img
+                  className="auth-user__avatar"
+                  src={userData.avatarUrl}
+                  alt={userData.fullName}
+                />
+              ) : (
+                <Avatar sx={{ width: 32, height: 32, marginBottom: 0.5 }} />
+              )}
+              <div className="auth-user__button"></div>
+              <Button onClick={onClickLogout} variant="contained">
+                Log Out
+              </Button>
             </div>
-          </Link>
+          ) : (
+            <Link to="/login">
+              <div className="header__login">
+                <svg
+                  width="32px"
+                  height="32px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="style=fill">
+                    <g id="profile">
+                      <path
+                        id="vector (Stroke)"
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M6.75 6.5C6.75 3.6005 9.1005 1.25 12 1.25C14.8995 1.25 17.25 3.6005 17.25 6.5C17.25 9.3995 14.8995 11.75 12 11.75C9.1005 11.75 6.75 9.3995 6.75 6.5Z"
+                        fill="#000000"
+                      />
+                      <path
+                        id="rec (Stroke)"
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M4.25 18.5714C4.25 15.6325 6.63249 13.25 9.57143 13.25H14.4286C17.3675 13.25 19.75 15.6325 19.75 18.5714C19.75 20.8792 17.8792 22.75 15.5714 22.75H8.42857C6.12081 22.75 4.25 20.8792 4.25 18.5714Z"
+                        fill="#000000"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </div>
