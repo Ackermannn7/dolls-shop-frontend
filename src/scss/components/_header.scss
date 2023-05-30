@@ -1,11 +1,14 @@
 @import "../variables";
 
 .header {
-  width: calc(100vw - 100px);
-  margin: 10px auto;
-
+  width: 100%;
+  position: fixed;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
   background-color: $background;
-  padding: 10px 20px 50px 0;
+  padding: 10px 80px 30px 80px;
+  z-index: 999;
 
   .container {
     display: flex;
@@ -27,7 +30,8 @@
     align-items: center;
   }
   &__cart {
-    margin-right: 10px;
+    position: relative;
+    margin-right: 30px;
     cursor: pointer;
     :hover {
       opacity: 0.8;
@@ -35,6 +39,12 @@
     }
     svg {
       color: $black;
+    }
+    span {
+      position: absolute;
+      font-weight: bold;
+      top: -10px;
+      font-size: 1.2em;
     }
   }
 

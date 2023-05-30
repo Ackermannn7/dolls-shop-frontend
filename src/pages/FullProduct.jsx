@@ -2,7 +2,8 @@ import React from "react";
 import "../scss/pages/_full-product.scss";
 import { CommentsBlock } from "../components/CommentsBlock";
 import { Index } from "../components/AddComment";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../redux/slices/cart";
 import { useParams } from "react-router-dom";
 import axios from "../axios";
 
@@ -10,7 +11,16 @@ export const FullProduct = () => {
   const [data, setData] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
   const { id } = useParams();
-
+  const dispatch = useDispatch();
+  const onClickAdd = () => {
+    const item = {
+      id: data._id,
+      dollName: data.dollName,
+      imageUrl: data.imageUrl,
+      price: data.price,
+    };
+    dispatch(addProduct(item));
+  };
   React.useEffect(() => {
     axios
       .get(`/dolls/${id}`)
@@ -28,8 +38,9 @@ export const FullProduct = () => {
     return (
       <div
         style={{
-          width: "400px",
-          height: "400px",
+          alignItems: "center",
+          width: "800px",
+          height: "800px",
           backgroundColor: "#eee",
         }}
       />
@@ -49,7 +60,9 @@ export const FullProduct = () => {
           <p className="product-price">{`$${data.price}`}</p>
           <p className="product-description">{data.description}</p>
           <p>
-            <button className="product-button">Add to Cart</button>
+            <button onClick={onClickAdd} className="product-button">
+              Add to Cart
+            </button>
           </p>
         </div>
       </div>

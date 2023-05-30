@@ -59,17 +59,17 @@
     border-color: $black;
     &,
     span {
-      color: $orange;
+      color: $background;
     }
 
     svg {
       path {
-        fill: $orange;
+        fill: $black;
       }
     }
 
     &:hover {
-      background-color: $orange;
+      background-color: $black;
 
       &,
       span {
@@ -84,7 +84,7 @@
     }
 
     &:active {
-      background-color: darken($orange, 8%);
+      background-color: darken($black, 8%);
     }
   }
 

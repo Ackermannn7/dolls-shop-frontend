@@ -12,6 +12,8 @@ import { Footer } from "./components/Footer";
 import { FullProduct } from "./pages/FullProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAuthMe, selectIsAuth } from "./redux/slices/authorization";
+import Cart from "./pages/Cart";
+
 function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
@@ -25,7 +27,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/dolls" element={<DollsList />} />
         <Route path="/dolls/:id" element={<FullProduct />} />
-
+        <Route path="/cart" element={<Cart />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/login" element={<Login />} />

@@ -6,12 +6,15 @@ import Button from "@mui/material/Button";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectIsAuth } from "../redux/slices/authorization";
+
 export const Header = () => {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
 
   console.log(userData);
+  const { items } = useSelector((state) => state.cart);
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
 
   const onClickLogout = () => {
     if (window.confirm("Are you sure you want to log out?")) {
@@ -19,6 +22,8 @@ export const Header = () => {
       window.localStorage.removeItem("token");
     }
   };
+
+  // const categories = ["Dolls", "Gallery", "About us", "Language"];
   return (
     <div className="header">
       <div className="container">
@@ -46,8 +51,10 @@ export const Header = () => {
           </ul>
         </div>
         <div className="header__right-block">
-          <div className="header__cart">
-            <a href="/cart.html" className="">
+          <Search />
+
+          <Link to="/cart">
+            <div className="header__cart">
               <svg
                 width="32"
                 height="32"
@@ -77,9 +84,9 @@ export const Header = () => {
                   stroke-linejoin="round"
                 />
               </svg>
-            </a>
-          </div>
-          <Search />
+              {totalCount === 0 ? "" : <span>{totalCount}</span>}
+            </div>
+          </Link>
           {isAuth ? (
             <div className="auth-user">
               {userData.avatarUrl ? (

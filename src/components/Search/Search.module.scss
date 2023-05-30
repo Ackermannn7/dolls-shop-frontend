@@ -1,11 +1,16 @@
 .root {
   margin-right: 10px;
+  margin-bottom: 5px;
   position: relative;
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  opacity: 0.5;
   cursor: pointer;
   &:hover {
     opacity: 0.8;
@@ -14,9 +19,9 @@
 }
 .input {
   border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 12px 20px;
+  padding: 10px 20px;
   padding-left: 40px;
-  width: 400px;
+  width: 300px;
   border-radius: 10px;
   font-size: 16px;
   transition: all 0.15s ease-in-out;

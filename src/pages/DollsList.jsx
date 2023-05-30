@@ -25,9 +25,7 @@ export const DollsList = () => {
           isProductLoading ? (
             <Product className="grid-item" key={index} isLoading={true} />
           ) : (
-            <Link to={`/dolls/${obj._id}`}>
-              <Product className="grid-item" key={obj.id} {...obj} />
-            </Link>
+            <Product className="grid-item" key={obj.id} {...obj} />
           )
         )}
       </div>
