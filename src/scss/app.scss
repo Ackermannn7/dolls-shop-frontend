@@ -94,10 +94,11 @@ body {
   &__header {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
-    margin-bottom: 20px;
+    margin: 0px 80px 20px 100px;
   }
 }
 .section_header {
@@ -115,6 +116,10 @@ body {
     position: absolute;
     display: block;
   }
+}
+.section_right {
+  display: flex;
+  justify-content: space-between;
 }
 .whyUs {
   display: flex;

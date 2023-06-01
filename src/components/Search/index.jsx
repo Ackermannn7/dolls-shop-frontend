@@ -1,32 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import SearchIcon from "@mui/icons-material/Search";
-import debounce from "lodash.debounce";
+// import debounce from "lodash.debounce";
 import styles from "./Search.module.scss";
 
-export const Search = () => {
-  const dispatch = useDispatch();
-  const [value, setValue] = React.useState("");
-
-  const inputRef = React.useRef(null);
-
-  const onCLickClear = () => {
-    setValue("");
-    // dispatch(setSearchValue(""));
-    inputRef.current?.focus();
-  };
-
-  const updateSearchValue = React.useCallback(
-    debounce((str) => {
-      // dispatch(setSearchValue(str));
-    }, 250),
-    []
-  );
-
-  const onChangeInput = (event) => {
-    setValue(event.target.value);
-    updateSearchValue(event.target.value);
-  };
+export const Search = ({ setSearchValue }) => {
+  // const onCLickClear = () => {
+  //   setSearchValue("");
+  // };
   return (
     <div className={styles.root}>
       <svg
@@ -44,13 +23,11 @@ export const Search = () => {
       </svg>
 
       <input
-        ref={inputRef}
-        value={value}
-        onChange={onChangeInput}
+        onChange={({ currentTarget: input }) => setSearchValue(input.value)}
         className={styles.input}
         placeholder="Search for Doll ..."
       />
-      {value && (
+      {/* {searchValue && (
         <svg
           onClick={onCLickClear}
           className={styles.clearIcon}
@@ -62,7 +39,7 @@ export const Search = () => {
           <path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z" />
           <path d="M0 0h48v48h-48z" fill="none" />
         </svg>
-      )}
+      )} */}
     </div>
   );
 };

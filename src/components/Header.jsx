@@ -1,4 +1,3 @@
-import { Search } from "./Search";
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo2.png";
 import Avatar from "@mui/material/Avatar";
@@ -50,8 +49,6 @@ export const Header = () => {
           </ul>
         </div>
         <div className="header__right-block">
-          <Search />
-
           <Link to="/cart">
             <div className="header__cart">
               <svg

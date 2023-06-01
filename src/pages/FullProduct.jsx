@@ -15,7 +15,6 @@ export const FullProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  console.log(comments.items);
   const onClickAdd = () => {
     const item = {
       id: data._id,

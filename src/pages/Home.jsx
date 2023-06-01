@@ -4,18 +4,56 @@ import Carousel from "react-multi-carousel";
 import { responsive } from "../assets/data/carousel";
 import { Product } from "../components/Product";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../redux/slices/dolls";
-import { Link } from "react-router-dom";
+import { fetchProductsForCarousel } from "../redux/slices/dolls";
+import axios from "../axios";
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const { dolls } = useSelector((state) => state.dolls);
-  const isProductLoading = dolls.status === "loading";
-
+  const [data, setData] = React.useState();
+  const [isLoading, setIsLoading] = React.useState(true);
+  // const dispatch = useDispatch();
+  // const { dolls } = useSelector((state) => state.dolls);
+  // const isProductLoading = data.status === "loading";
   React.useEffect(() => {
-    dispatch(fetchProducts());
+    axios
+      .get(`/dollsCarousel`)
+      .then((res) => {
+        setData(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.warn(err);
+        alert("Error getting doll!");
+      });
   }, []);
-
+  console.log(data);
+  if (isLoading) {
+    console.log(isLoading);
+    return (
+      <Carousel
+        responsive={responsive}
+        swipeable={false}
+        draggable={false}
+        showDots={true}
+        ssr={true} // means to render carousel on server-side.
+        slidesToSlide={2}
+        infinite={true}
+        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+        autoPlaySpeed={1000}
+        keyBoardControl={true}
+        customTransition="all .5s"
+        transitionDuration={500}
+        containerClass="carousel-container"
+        removeArrowOnDeviceType={["tablet", "mobile"]}
+        // deviceType={this.props.deviceType}
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-40-px"
+      >
+        {[...Array(5)].map((obj, index) => (
+          <Product key={index} isLoading={true} />
+        ))}
+      </Carousel>
+    );
+  }
   return (
     <div className="wrapper">
       <div className="content">
@@ -44,14 +82,9 @@ const Home = () => {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
           >
-            {(isProductLoading ? [...Array(5)] : dolls.items).map(
-              (obj, index) =>
-                isProductLoading ? (
-                  <Product key={index} isLoading={true} />
-                ) : (
-                  <Product key={obj.id} {...obj} />
-                )
-            )}
+            {data.map((obj, index) => (
+              <Product key={obj.id} {...obj} />
+            ))}
           </Carousel>
         </div>
         <div className="whyUs">
