@@ -1,5 +1,4 @@
 import React from "react";
-
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
@@ -8,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
 
-export const CommentsBlock = ({ items, children, isLoading = true }) => {
+export const CommentsBlock = ({ items, isLoading = true }) => {
   return (
     <List>
       {(isLoading ? [...Array(5)] : items).map((obj, index) => (
@@ -18,7 +17,7 @@ export const CommentsBlock = ({ items, children, isLoading = true }) => {
               {isLoading ? (
                 <Skeleton variant="circular" width={40} height={40} />
               ) : (
-                <Avatar alt={obj.user.fullName} src={obj.user.avatarUrl} />
+                <Avatar alt={obj.fullName} src={obj.avatarUrl} />
               )}
             </ListItemAvatar>
             {isLoading ? (
@@ -27,7 +26,7 @@ export const CommentsBlock = ({ items, children, isLoading = true }) => {
                 <Skeleton variant="text" height={18} width={230} />
               </div>
             ) : (
-              <ListItemText primary={obj.user.fullName} secondary={obj.text} />
+              <ListItemText primary={obj.fullName} secondary={obj.comment} />
             )}
           </ListItem>
           <Divider variant="inset" component="li" />

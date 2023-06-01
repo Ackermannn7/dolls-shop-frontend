@@ -6,12 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../redux/slices/cart";
 import { useParams } from "react-router-dom";
 import axios from "../axios";
+import { fetchComments } from "../redux/slices/comments";
 
 export const FullProduct = () => {
   const [data, setData] = React.useState();
+  const { comments } = useSelector((state) => state.comments);
   const [isLoading, setIsLoading] = React.useState(true);
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  console.log(comments.items);
   const onClickAdd = () => {
     const item = {
       id: data._id,
@@ -21,6 +25,7 @@ export const FullProduct = () => {
     };
     dispatch(addProduct(item));
   };
+
   React.useEffect(() => {
     axios
       .get(`/dolls/${id}`)
@@ -30,15 +35,20 @@ export const FullProduct = () => {
       })
       .catch((err) => {
         console.warn(err);
-        alert("Error getting post!");
+        alert("Error getting doll!");
       });
   }, []);
-  console.log(data);
+
+  React.useEffect(() => {
+    dispatch(fetchComments(id));
+  }, []);
+
   if (isLoading) {
     return (
       <div
         style={{
-          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
           width: "800px",
           height: "800px",
           backgroundColor: "#eee",
@@ -46,6 +56,7 @@ export const FullProduct = () => {
       />
     );
   }
+
   return (
     <div className="fullProduct">
       <div className="product">
@@ -66,28 +77,9 @@ export const FullProduct = () => {
           </p>
         </div>
       </div>
-
-      <CommentsBlock
-        items={[
-          {
-            user: {
-              fullName: "Вася Пупкин",
-              avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
-            },
-            text: "Это тестовый комментарий 555555",
-          },
-          {
-            user: {
-              fullName: "Иван Иванов",
-              avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
-            },
-            text: "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top",
-          },
-        ]}
-        isLoading={false}
-      >
-        <Index />
-      </CommentsBlock>
+      <h3>Comments</h3>
+      <Index />
+      <CommentsBlock items={comments.items} isLoading={false} />
     </div>
   );
 };
