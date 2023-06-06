@@ -13,6 +13,7 @@ import { FullProduct } from "./pages/FullProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAuthMe, selectIsAuth } from "./redux/slices/authorization";
 import Cart from "./pages/Cart";
+import { UserPage } from "./pages/UserPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/me" element={<UserPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

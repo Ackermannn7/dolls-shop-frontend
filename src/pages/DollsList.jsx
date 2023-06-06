@@ -2,8 +2,6 @@ import React from "react";
 import { Product } from "../components/Product";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/slices/dolls";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import { Search } from "../components/Search";
 import { Pagination } from "../components/Pagination";
 import { Sort } from "../components/Sort";
@@ -16,13 +14,14 @@ export const DollsList = () => {
   const [sort, setSort] = React.useState({ sort: "price", order: "asc" });
   const [searchValue, setSearchValue] = React.useState("");
   const [page, setPage] = React.useState(1);
+
   React.useEffect(() => {
     dispatch(fetchProducts({ sort, searchValue, page }));
   }, [sort, searchValue, page]);
-  console.log(dolls);
+
   return (
     <>
-      <div className="recommended__header">
+      <div className="dollsList__header">
         <div className="section_header">
           <h3>Dolls</h3>
         </div>

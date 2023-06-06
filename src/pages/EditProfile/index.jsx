@@ -1,9 +1,10 @@
 import React from "react";
+import axios from "../axios";
 import { fetchRegister, selectIsAuth } from "../../redux/slices/authorization";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from "../../axios";
+import styles from "./EditProfile.module.scss";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
@@ -12,9 +13,8 @@ import Avatar from "@mui/material/Avatar";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import DeleteIcon from "@mui/icons-material/Clear";
 import IconButton from "@mui/material/IconButton";
-import styles from "./Register.module.scss";
 
-export const Register = () => {
+export const EditProfile = () => {
   const [imageUrl, setImageUrl] = React.useState("");
   const inputFileRef = React.useRef(null);
 
@@ -73,10 +73,11 @@ export const Register = () => {
   if (isAuth) {
     return <Navigate to="/" />;
   }
+
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
-        Edit Profile
+        Registration
       </Typography>
       <div className={styles.avatar}>
         {imageUrl ? (
@@ -125,15 +126,6 @@ export const Register = () => {
           {...register("email", { required: "Enter your email" })}
           className={styles.field}
           label="E-Mail"
-          fullWidth
-        />
-        <TextField
-          error={Boolean(errors.password?.message)}
-          helperText={errors.password?.message}
-          type="password"
-          {...register("password", { required: "Enter your password" })}
-          className={styles.field}
-          label="Password"
           fullWidth
         />
         <TextField

@@ -95,6 +95,19 @@ body {
     position: relative;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0px 80px 20px 100px;
+  }
+}
+.dollsList {
+  display: flex;
+  flex-direction: column;
+  &__header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     text-align: center;

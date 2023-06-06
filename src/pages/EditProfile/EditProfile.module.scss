@@ -1,0 +1,57 @@
+.root {
+  width: 400px;
+  padding: 50px;
+  border: 1px solid #dedede;
+  margin: 50px auto;
+}
+
+.field {
+  margin-bottom: 20px !important;
+}
+
+.title {
+  text-align: center !important;
+  font-weight: bold !important;
+  margin-bottom: 30px !important;
+}
+
+.avatar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.editButtons {
+  position: absolute;
+  right: 65px;
+  border-radius: 10px;
+  transition: all 0.15s ease-in-out;
+}
+
+.uploadedAvatar {
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+}
+
+.bottomText {
+  font-size: 1.1em;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.bottomLink {
+  color: rgb(25, 25, 238);
+}
+
+.addPhotoIcon {
+  :hover {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease-in-out;
+  }
+}

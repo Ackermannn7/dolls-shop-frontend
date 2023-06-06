@@ -1,5 +1,5 @@
 import React from "react";
-import "../scss/pages/_full-product.scss";
+import "../scss/pages/fullProduct.scss";
 import { CommentsBlock } from "../components/CommentsBlock";
 import { Index } from "../components/AddComment";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,6 @@ export const FullProduct = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const { id } = useParams();
   const dispatch = useDispatch();
-
   const onClickAdd = () => {
     const item = {
       id: data._id,
@@ -55,7 +54,7 @@ export const FullProduct = () => {
       />
     );
   }
-
+  console.log(data.imageUrl);
   return (
     <div className="fullProduct">
       <div className="product">

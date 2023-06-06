@@ -84,14 +84,16 @@ export const Header = () => {
           </Link>
           {isAuth ? (
             <div className="auth-user">
-              {userData.avatarUrl ? (
-                <Avatar
-                  sx={{ width: 32, height: 32, marginBottom: 0.5 }}
-                  src={userData.avatarUrl}
-                />
-              ) : (
-                <Avatar sx={{ width: 32, height: 32, marginBottom: 0.5 }} />
-              )}
+              <Link to="/me">
+                {userData.avatarUrl ? (
+                  <Avatar
+                    sx={{ width: 32, height: 32, marginBottom: 0.5 }}
+                    src={userData.avatarUrl}
+                  />
+                ) : (
+                  <Avatar sx={{ width: 32, height: 32, marginBottom: 0.5 }} />
+                )}
+              </Link>
               <div className="auth-user__button"></div>
               <Button
                 onClick={onClickLogout}
