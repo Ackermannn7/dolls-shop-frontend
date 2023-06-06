@@ -6,12 +6,12 @@ import { useDispatch } from "react-redux";
 const CartItemBlock = ({ id, dollName, price, count, imageUrl }) => {
   console.log(id, dollName, price, count, imageUrl);
   const dispatch = useDispatch();
-  const onClickAdd = () => {
-    dispatch(addProduct({ id }));
-  };
-  const onClickMinus = () => {
-    dispatch(minusProduct(id));
-  };
+  // const onClickAdd = () => {
+  //   dispatch(addProduct({ id }));
+  // };
+  // const onClickMinus = () => {
+  //   dispatch(minusProduct(id));
+  // };
   const onClickRemove = () => {
     dispatch(removeProduct(id));
   };
@@ -28,7 +28,7 @@ const CartItemBlock = ({ id, dollName, price, count, imageUrl }) => {
       <div className="cart__item-info">
         <h3>{dollName}</h3>
       </div>
-      <div className="cart__item-count">
+      {/* <div className="cart__item-count">
         <button
           disabled={count === 1}
           onClick={onClickMinus}
@@ -76,7 +76,7 @@ const CartItemBlock = ({ id, dollName, price, count, imageUrl }) => {
             ></path>
           </svg>
         </button>
-      </div>
+      </div> */}
       <div className="cart__item-price">
         <b>{(price * count).toFixed(2)}$</b>
       </div>

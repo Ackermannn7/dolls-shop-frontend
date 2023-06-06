@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import logo from "../assets/img/logo2.png";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectIsAuth } from "../redux/slices/authorization";
 
@@ -94,7 +93,16 @@ export const Header = () => {
                 <Avatar sx={{ width: 32, height: 32, marginBottom: 0.5 }} />
               )}
               <div className="auth-user__button"></div>
-              <Button onClick={onClickLogout} variant="contained">
+              <Button
+                onClick={onClickLogout}
+                variant="contained"
+                sx={{
+                  backgroundColor: "#232323",
+                  "&:hover": {
+                    backgroundColor: "#c70000", // Change this to the desired hover background color
+                  },
+                }}
+              >
                 Log Out
               </Button>
             </div>

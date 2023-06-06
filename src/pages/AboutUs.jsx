@@ -1,11 +1,9 @@
 import React from "react";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
 
 export const AboutUs = () => {
   return (
     <div className="content">
-      <div className="recommended__header">
+      <div className="aboutus__header">
         <div className="section_header">
           <h3>About Us</h3>
         </div>
