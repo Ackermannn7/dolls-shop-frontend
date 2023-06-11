@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { clearCart } from "../redux/slices/cart";
+import { saveOrder } from "../redux/slices/order";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -34,11 +35,12 @@ const modalStyle = {
 export default function PaymentModal({ open, setOpen }) {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
+  const userData = useSelector((state) => state.auth.data);
   const { items, totalPrice } = useSelector((state) => state.cart);
-
   const onApproveHandler = async (data, actions) => {
     try {
       await actions.order.capture();
+      dispatch(saveOrder({ userData, items, totalPrice }));
       dispatch(clearCart()); // Clear the cart state
 
       toast.success("Payment successful!", {

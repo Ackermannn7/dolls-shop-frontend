@@ -17,10 +17,18 @@ export const fetchOneOrder = createAsyncThunk("order/oneOrder", async (id) => {
   return data;
 });
 
-export const saveOrder = createAsyncThunk("order/saveOrder", async (params) => {
-  const { data } = await axios.post(`/saveOrder`, params);
-  return data;
-});
+export const saveOrder = createAsyncThunk(
+  "order/saveOrder",
+  async ({ userData, items, totalPrice }) => {
+    console.log(userData, items, totalPrice);
+    const { data } = await axios.post(`/saveOrder`, {
+      userData,
+      items,
+      totalPrice,
+    });
+    return data;
+  }
+);
 
 const initialState = {
   data: {

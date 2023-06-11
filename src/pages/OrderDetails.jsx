@@ -8,7 +8,6 @@ export const OrderDetails = () => {
   const { id } = useParams();
   const totalQuantity = data?.items.length;
   const totalPrice = data?.total;
-  console.log(totalQuantity);
   useEffect(() => {
     axios
       .get(`/order/${id}`)
@@ -21,7 +20,7 @@ export const OrderDetails = () => {
         alert("Error getting order details!");
       });
   }, [id]);
-  console.log(data?.total);
+  console.log(data);
   if (isLoading) {
     return (
       <div

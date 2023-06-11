@@ -4,6 +4,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectIsAuth } from "../redux/slices/authorization";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Header = () => {
   const isAuth = useSelector(selectIsAuth);
@@ -17,6 +19,16 @@ export const Header = () => {
     if (window.confirm("Are you sure you want to log out?")) {
       dispatch(logout());
       window.localStorage.removeItem("token");
+      toast.success("Log out successful!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 

@@ -27,7 +27,7 @@ function App() {
     <div className="wrapper">
       <ToastContainer />
       <Header />
-      <Routes>
+      <Routes className="routes">
         <Route path="/" element={<Home />} />
         <Route path="/dolls" element={<DollsList />} />
         <Route path="/dolls/:id" element={<FullProduct />} />
