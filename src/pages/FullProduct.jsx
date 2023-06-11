@@ -7,6 +7,7 @@ import { addProduct } from "../redux/slices/cart";
 import { useParams } from "react-router-dom";
 import axios from "../axios";
 import { fetchComments } from "../redux/slices/comments";
+import { toast } from "react-toastify";
 
 export const FullProduct = () => {
   const [data, setData] = React.useState();
@@ -15,6 +16,16 @@ export const FullProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const onClickAdd = () => {
+    toast.success("The doll was added to your cart!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+    });
     const item = {
       id: data._id,
       dollName: data.dollName,

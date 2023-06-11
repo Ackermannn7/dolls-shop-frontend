@@ -4,10 +4,21 @@ import Skeleton from "./Skeleton";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../redux/slices/cart";
+import { toast } from "react-toastify";
 
 export const Product = (props) => {
   const dispatch = useDispatch();
   const onClickAdd = () => {
+    toast.success("The doll was added to your cart!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+    });
     const item = {
       id: props._id,
       dollName: props.dollName,

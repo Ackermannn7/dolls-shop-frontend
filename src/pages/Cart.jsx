@@ -4,12 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
 import { CartEmpty } from "../components/CartEmpty";
 import { clearCart } from "../redux/slices/cart";
+import PaymentModal from "../components/PaymentModal";
+
 const cartFromStorage = JSON.parse(localStorage.getItem("cart") || "[]");
 
 const Cart = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector((state) => state.cart);
   console.log(items);
+  const [openModal, setOpenModal] = React.useState(false);
+
   const onClickClear = () => {
     dispatch(clearCart());
   };
@@ -141,7 +145,11 @@ const Cart = () => {
               <span>Back</span>
             </Link>
             <div className="button pay-btn">
-              <span>Pay Now</span>
+              <PaymentModal
+                open={openModal}
+                setOpen={setOpenModal}
+                totalPrice={totalPrice}
+              />
             </div>
           </div>
         </div>

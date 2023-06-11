@@ -32,7 +32,13 @@
   margin-bottom: 50px;
   font-size: 2em;
 }
+.profile-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 .change-button {
+  margin: 0 20px;
   border-radius: 10px;
   font-weight: bold;
   border: none;

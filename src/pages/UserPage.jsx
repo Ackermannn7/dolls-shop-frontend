@@ -1,42 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from "../axios";
 import "../scss/pages/userPage.scss";
 import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
+import { useSelector } from "react-redux";
 
 export const UserPage = () => {
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const userData = useSelector((state) => state.auth.data);
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get("/auth/me");
-        setUserData(response.data);
-        setLoading(false);
-        setError("");
-      } catch (err) {
-        setError(err.response.data.message);
-        setLoading(false);
-      }
-    };
-
-    fetchUserData();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
   console.log(userData);
   return (
     <div className="user-page">
       <div className="user">
-        {userData.avatarUrl ? (
+        {userData?.avatarUrl ? (
           <Avatar
             sx={{ width: 200, height: 200, marginBottom: 0.5 }}
             src={userData.avatarUrl}
@@ -45,13 +21,20 @@ export const UserPage = () => {
           <Avatar sx={{ width: 200, height: 200, marginBottom: 0.5 }} />
         )}
         <div className="user-info">
-          <h2 className="user-fullName">{userData.fullName}</h2>
-          <p className="user-email">Email: {userData.email}</p>
-          <p>
-            <Link to="/changeProfile" className="change-button">
-              Change Profile
-            </Link>
-          </p>
+          <h2 className="user-fullName">{userData?.fullName}</h2>
+          <p className="user-email">Email: {userData?.email}</p>
+          <div className="profile-buttons">
+            <p>
+              <Link to="/changeProfile" className="change-button">
+                Change Profile
+              </Link>
+            </p>
+            <p>
+              <Link to="/orderHistory" className="change-button">
+                Order History
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

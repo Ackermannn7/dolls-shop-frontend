@@ -3,8 +3,6 @@ import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
 import { responsive } from "../assets/data/carousel";
 import { Product } from "../components/Product";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProductsForCarousel } from "../redux/slices/dolls";
 import axios from "../axios";
 import { WhyUs } from "../components/WhyUs";
 
@@ -24,7 +22,6 @@ const Home = () => {
         alert("Error getting doll!");
       });
   }, []);
-  console.log(data);
   if (isLoading) {
     console.log(isLoading);
     return (
@@ -70,8 +67,9 @@ const Home = () => {
             ssr={true} // means to render carousel on server-side.
             slidesToSlide={2}
             infinite={true}
+            autoPlay={true}
             // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-            autoPlaySpeed={1000}
+            autoPlaySpeed={3000}
             keyBoardControl={true}
             customTransition="all .5s"
             transitionDuration={500}

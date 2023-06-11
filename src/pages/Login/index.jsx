@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import { toast } from "react-toastify";
 
 import styles from "./Login.module.scss";
 import { fetchLogin, selectIsAuth } from "../../redux/slices/authorization";
@@ -25,15 +26,33 @@ export const Login = () => {
     },
     mode: "onChange",
   });
-
+  console.log(errors);
   const onSubmit = async (values) => {
     const data = await dispatch(fetchLogin(values));
-    console.log(data);
     if (!data.payload) {
-      return alert("Couldn't login");
+      return toast.error("Incorrect Login or password!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
     }
     if ("token" in data.payload) {
       window.localStorage.setItem("token", data.payload.token);
+      toast.success(`Wellcome, ${data.payload.fullName}!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 

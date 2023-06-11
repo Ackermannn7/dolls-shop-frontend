@@ -14,7 +14,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAuthMe, selectIsAuth } from "./redux/slices/authorization";
 import Cart from "./pages/Cart";
 import { UserPage } from "./pages/UserPage";
-
+import { ToastContainer } from "react-toastify";
+import { OrderHistory } from "./pages/OrderHistory";
+import { OrderDetails } from "./pages/OrderDetails";
 function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
@@ -23,6 +25,7 @@ function App() {
   }, []);
   return (
     <div className="wrapper">
+      <ToastContainer />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,6 +35,8 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/me" element={<UserPage />} />
+        <Route path="/orderHistory" element={<OrderHistory />} />
+        <Route path="/order/:id" element={<OrderDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

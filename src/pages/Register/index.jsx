@@ -13,6 +13,7 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import DeleteIcon from "@mui/icons-material/Clear";
 import IconButton from "@mui/material/IconButton";
 import styles from "./Register.module.scss";
+import { toast } from "react-toastify";
 
 export const Register = () => {
   const [imageUrl, setImageUrl] = React.useState("");
@@ -30,8 +31,6 @@ export const Register = () => {
       alert("Error uploading image!");
     }
   };
-
-  console.log(imageUrl);
 
   const onClickRemoveImage = () => {
     setImageUrl("");
@@ -61,12 +60,30 @@ export const Register = () => {
         avatarUrl: `http://localhost:4444/${imageUrl}`,
       })
     );
-    console.log({ ...values, avatarUrl: `http://localhost:4444/${imageUrl}` });
     if (!data.payload) {
-      return alert("Couldn't sign up");
+      return toast.error("Couldn`t sign up!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
     }
     if ("token" in data.payload) {
       window.localStorage.setItem("token", data.payload.token);
+      toast.success(`Wellcome, ${data.payload.fullName}!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -136,7 +153,7 @@ export const Register = () => {
           label="Password"
           fullWidth
         />
-        <TextField
+        {/* <TextField
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
           type="password"
@@ -144,7 +161,7 @@ export const Register = () => {
           className={styles.field}
           label="Password"
           fullWidth
-        />
+        /> */}
 
         <Button
           disabled={!isValid}
