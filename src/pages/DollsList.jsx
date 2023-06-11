@@ -20,7 +20,7 @@ export const DollsList = () => {
   }, [sort, searchValue, page]);
 
   return (
-    <>
+    <div className="content">
       <div className="dollsList__header">
         <div className="section_header">
           <h3>Dolls</h3>
@@ -49,6 +49,6 @@ export const DollsList = () => {
         total={dolls.items.total ? dolls.items.total : 0}
         setPage={(page) => setPage(page)}
       />
-    </>
+    </div>
   );
 };

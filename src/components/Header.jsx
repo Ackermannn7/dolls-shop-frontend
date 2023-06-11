@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/img/logo2.png";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -14,10 +14,11 @@ export const Header = () => {
 
   const { items } = useSelector((state) => state.cart);
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
-
+  const navigate = useNavigate();
   const onClickLogout = () => {
     if (window.confirm("Are you sure you want to log out?")) {
       dispatch(logout());
+      navigate("/");
       window.localStorage.removeItem("token");
       toast.success("Log out successful!", {
         position: "top-right",

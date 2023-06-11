@@ -48,7 +48,7 @@ export const OrderHistory = () => {
           </table>
         </div>
       ) : (
-        <div>
+        <div className="no-orders-msg">
           <p>No order history available.</p>
         </div>
       )}

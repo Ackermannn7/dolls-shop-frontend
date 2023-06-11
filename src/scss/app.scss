@@ -7,11 +7,11 @@ body {
   background-color: $background;
 }
 .wrapper {
+  margin-top: 50px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
   width: 100%;
-  min-height: 100vh;
   border-radius: 10px;
   @media (max-width: 645px) {
     width: calc(100vw - 30px);
@@ -24,9 +24,10 @@ body {
   margin: 0;
 }
 .content {
+  margin-top: 50px;
   padding: 10px 0;
   &__error-info {
-    margin: 100px auto;
+    margin: 50px auto;
     width: 500px;
     text-align: center;
     h2 {

@@ -27,19 +27,22 @@ function App() {
     <div className="wrapper">
       <ToastContainer />
       <Header />
-      <Routes className="routes">
-        <Route path="/" element={<Home />} />
-        <Route path="/dolls" element={<DollsList />} />
-        <Route path="/dolls/:id" element={<FullProduct />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/me" element={<UserPage />} />
-        <Route path="/orderHistory" element={<OrderHistory />} />
-        <Route path="/order/:id" element={<OrderDetails />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
+      <div className="routes">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dolls" element={<DollsList />} />
+          <Route path="/dolls/:id" element={<FullProduct />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/me" element={<UserPage />} />
+          <Route path="/orderHistory" element={<OrderHistory />} />
+          <Route path="/order/:id" element={<OrderDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div>
+
       <Footer />
     </div>
   );

@@ -51,41 +51,39 @@ const Home = () => {
     );
   }
   return (
-    <div className="wrapper">
-      <div className="content">
-        <div className="recommended">
-          <div className="recommended__header">
-            <div className="section_header">
-              <h3>Recommended Dolls</h3>
-            </div>
+    <div className="content">
+      <div className="recommended">
+        <div className="recommended__header">
+          <div className="section_header">
+            <h3>Recommended Dolls</h3>
           </div>
-          <Carousel
-            responsive={responsive}
-            swipeable={false}
-            draggable={false}
-            showDots={true}
-            ssr={true} // means to render carousel on server-side.
-            slidesToSlide={2}
-            infinite={true}
-            autoPlay={true}
-            // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-            autoPlaySpeed={3000}
-            keyBoardControl={true}
-            customTransition="all .5s"
-            transitionDuration={500}
-            containerClass="carousel-container"
-            removeArrowOnDeviceType={["tablet", "mobile"]}
-            // deviceType={this.props.deviceType}
-            dotListClass="custom-dot-list-style"
-            itemClass="carousel-item-padding-40-px"
-          >
-            {data.map((obj, index) => (
-              <Product key={obj.id} {...obj} />
-            ))}
-          </Carousel>
         </div>
-        <WhyUs />
+        <Carousel
+          responsive={responsive}
+          swipeable={false}
+          draggable={false}
+          showDots={true}
+          ssr={true} // means to render carousel on server-side.
+          slidesToSlide={2}
+          infinite={true}
+          autoPlay={true}
+          // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+          autoPlaySpeed={3000}
+          keyBoardControl={true}
+          customTransition="all .5s"
+          transitionDuration={500}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={["tablet", "mobile"]}
+          // deviceType={this.props.deviceType}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+        >
+          {data.map((obj, index) => (
+            <Product key={obj.id} {...obj} />
+          ))}
+        </Carousel>
       </div>
+      <WhyUs />
     </div>
   );
 };

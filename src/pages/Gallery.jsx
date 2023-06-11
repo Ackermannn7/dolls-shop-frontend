@@ -14,7 +14,7 @@ export const Gallery = () => {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "50px" }}>
       <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
         <Masonry gutter="20px">
           {(isGalleryLoading ? [...Array(15)] : gallery.items).map(
