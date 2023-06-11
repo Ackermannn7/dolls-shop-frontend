@@ -17,12 +17,23 @@ import { UserPage } from "./pages/UserPage";
 import { ToastContainer } from "react-toastify";
 import { OrderHistory } from "./pages/OrderHistory";
 import { OrderDetails } from "./pages/OrderDetails";
+import { addProduct } from "./redux/slices/cart";
+
 function App() {
   const dispatch = useDispatch();
+  const { items } = useSelector((state) => state.cart);
   const isAuth = useSelector(selectIsAuth);
   React.useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);
+  React.useEffect(() => {
+    const cartFromStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+    cartFromStorage.forEach((item) => dispatch(addProduct(item)));
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(items));
+  }, [items]);
   return (
     <div className="wrapper">
       <ToastContainer />

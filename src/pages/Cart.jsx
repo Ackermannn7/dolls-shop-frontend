@@ -6,22 +6,15 @@ import { CartEmpty } from "../components/CartEmpty";
 import { clearCart } from "../redux/slices/cart";
 import PaymentModal from "../components/PaymentModal";
 
-const cartFromStorage = JSON.parse(localStorage.getItem("cart") || "[]");
-
 const Cart = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector((state) => state.cart);
-  console.log(items);
   const [openModal, setOpenModal] = React.useState(false);
 
   const onClickClear = () => {
     dispatch(clearCart());
   };
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
-
-  React.useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(items));
-  }, [items]);
 
   if (totalPrice === 0) {
     return <CartEmpty />;
@@ -104,11 +97,11 @@ const Cart = () => {
           </div>
         </div>
         <div className="content__items">
-          {items !== "[]"
-            ? items.map((item) => <CartItem key={item.id} {...item} />)
-            : cartFromStorage.map((item) => (
-                <CartItem key={item.id} {...item} />
-              ))}
+          {items.length !== 0 ? (
+            items.map((item) => <CartItem key={item.id} {...item} />)
+          ) : (
+            <p>No items in the cart.</p>
+          )}
         </div>
         <div className="cart__bottom">
           <div className="cart__bottom-details">

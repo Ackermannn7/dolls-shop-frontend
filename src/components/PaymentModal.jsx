@@ -42,7 +42,7 @@ export default function PaymentModal({ open, setOpen }) {
       await actions.order.capture();
       dispatch(saveOrder({ userData, items, totalPrice }));
       dispatch(clearCart()); // Clear the cart state
-
+      window.localStorage.removeItem("cart");
       toast.success("Payment successful!", {
         position: "top-center",
         autoClose: 5000,
