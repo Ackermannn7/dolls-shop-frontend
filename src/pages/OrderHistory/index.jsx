@@ -16,7 +16,7 @@ export const OrderHistory = () => {
   }, [dispatch, userData]);
 
   return (
-    <>
+    <div className="content">
       <div className="recommended__header">
         <div className="section_header">
           <h3>Order History</h3>
@@ -52,6 +52,6 @@ export const OrderHistory = () => {
           <p>No order history available.</p>
         </div>
       )}
-    </>
+    </div>
   );
 };
