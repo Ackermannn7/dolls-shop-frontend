@@ -9,29 +9,31 @@ import Skeleton from "@mui/material/Skeleton";
 
 export const CommentsBlock = ({ items, isLoading = true }) => {
   return (
-    <List>
-      {(isLoading ? [...Array(5)] : items).map((obj, index) => (
-        <React.Fragment key={index}>
-          <ListItem alignItems="flex-start">
-            <ListItemAvatar>
+    <div style={{ margin: "0 40px" }}>
+      <List>
+        {(isLoading ? [...Array(5)] : items).map((obj, index) => (
+          <React.Fragment key={index}>
+            <ListItem alignItems="flex-start">
+              <ListItemAvatar>
+                {isLoading ? (
+                  <Skeleton variant="circular" width={40} height={40} />
+                ) : (
+                  <Avatar alt={obj.fullName} src={obj.avatarUrl} />
+                )}
+              </ListItemAvatar>
               {isLoading ? (
-                <Skeleton variant="circular" width={40} height={40} />
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <Skeleton variant="text" height={25} width={120} />
+                  <Skeleton variant="text" height={18} width={230} />
+                </div>
               ) : (
-                <Avatar alt={obj.fullName} src={obj.avatarUrl} />
+                <ListItemText primary={obj.fullName} secondary={obj.comment} />
               )}
-            </ListItemAvatar>
-            {isLoading ? (
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <Skeleton variant="text" height={25} width={120} />
-                <Skeleton variant="text" height={18} width={230} />
-              </div>
-            ) : (
-              <ListItemText primary={obj.fullName} secondary={obj.comment} />
-            )}
-          </ListItem>
-          <Divider variant="inset" component="li" />
-        </React.Fragment>
-      ))}
-    </List>
+            </ListItem>
+            <Divider variant="inset" component="li" />
+          </React.Fragment>
+        ))}
+      </List>
+    </div>
   );
 };

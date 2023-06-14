@@ -1,5 +1,4 @@
 import React from "react";
-import "../scss/pages/fullProduct.scss";
 import { CommentsBlock } from "../components/CommentsBlock";
 import { Index } from "../components/AddComment";
 import { useDispatch, useSelector } from "react-redux";
@@ -65,30 +64,33 @@ export const FullProduct = () => {
       />
     );
   }
-  console.log(data.imageUrl);
   return (
-    <div className="fullProduct">
-      <div className="product">
-        <div className="product-image">
-          <img
-            src={`http://localhost:4444/${data.imageUrl}`}
-            alt={data.dollName}
-          />
+    <div className="content">
+      <div className="fullProduct">
+        <div className="product">
+          <div className="product-image">
+            <img
+              src={`http://localhost:4444/${data.imageUrl}`}
+              alt={data.dollName}
+            />
+          </div>
+          <div className="product-info">
+            <h2 className="product-title">{data.dollName}</h2>
+            <p className="product-price">{`$${data.price}`}</p>
+            <p className="product-description">{data.description}</p>
+            <p>
+              <button onClick={onClickAdd} className="product-button">
+                Add to Cart
+              </button>
+            </p>
+          </div>
         </div>
-        <div className="product-info">
-          <h2 className="product-title">{data.dollName}</h2>
-          <p className="product-price">{`$${data.price}`}</p>
-          <p className="product-description">{data.description}</p>
-          <p>
-            <button onClick={onClickAdd} className="product-button">
-              Add to Cart
-            </button>
-          </p>
+        <div className="comments_header">
+          <h3>Comments</h3>
         </div>
+        <Index />
+        <CommentsBlock items={comments.items} isLoading={false} />
       </div>
-      <h3>Comments</h3>
-      <Index />
-      <CommentsBlock items={comments.items} isLoading={false} />
     </div>
   );
 };

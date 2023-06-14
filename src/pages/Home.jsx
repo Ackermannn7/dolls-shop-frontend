@@ -9,6 +9,7 @@ import { WhyUs } from "../components/WhyUs";
 const Home = () => {
   const [data, setData] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
+  const [deviceType, setDeviceType] = React.useState("");
 
   React.useEffect(() => {
     axios
@@ -21,6 +22,20 @@ const Home = () => {
         console.warn(err);
         alert("Error getting doll!");
       });
+    const getDeviceType = () => {
+      const { userAgent } = navigator;
+
+      if (/mobile/i.test(userAgent)) {
+        return "mobile";
+      } else if (/tablet/i.test(userAgent)) {
+        return "tablet";
+      } else {
+        return "desktop";
+      }
+    };
+
+    // Set the device type in the state
+    setDeviceType(getDeviceType());
   }, []);
   if (isLoading) {
     console.log(isLoading);
@@ -40,7 +55,7 @@ const Home = () => {
         transitionDuration={500}
         containerClass="carousel-container"
         removeArrowOnDeviceType={["tablet", "mobile"]}
-        // deviceType={this.props.deviceType}
+        deviceType={deviceType}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >

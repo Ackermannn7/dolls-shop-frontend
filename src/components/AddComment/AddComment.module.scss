@@ -1,9 +1,6 @@
 .root {
   display: flex;
-  margin-top: 10px;
-  padding-bottom: 20px;
-  margin-right: 20px;
-  margin-left: 17px;
+  margin: 0 40px;
 }
 
 .avatar {
@@ -12,7 +9,6 @@
 
 .form {
   width: 100%;
-
   button {
     margin-top: 10px;
   }

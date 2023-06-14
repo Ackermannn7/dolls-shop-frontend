@@ -27,28 +27,26 @@ export const Index = () => {
   };
 
   return (
-    <>
-      <div className={styles.root}>
-        {userData ? (
-          <Avatar classes={{ root: styles.avatar }} src={userData.avatarUrl} />
-        ) : (
-          <Avatar classes={{ root: styles.avatar }} />
-        )}
-        <div className={styles.form}>
-          <TextField
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            label="Write a Comment"
-            variant="outlined"
-            maxRows={10}
-            multiline
-            fullWidth
-          />
-          <Button onClick={onSubmit} variant="contained">
-            Send
-          </Button>
-        </div>
+    <div className={styles.root}>
+      {userData ? (
+        <Avatar classes={{ root: styles.avatar }} src={userData.avatarUrl} />
+      ) : (
+        <Avatar classes={{ root: styles.avatar }} />
+      )}
+      <div className={styles.form}>
+        <TextField
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          label="Write a Comment"
+          variant="outlined"
+          maxRows={10}
+          multiline
+          fullWidth
+        />
+        <Button onClick={onSubmit} variant="contained">
+          Send
+        </Button>
       </div>
-    </>
+    </div>
   );
 };
