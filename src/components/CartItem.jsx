@@ -14,7 +14,7 @@ const CartItemBlock = ({ id, dollName, price, count, imageUrl }) => {
       <div className="cart__item-img">
         <img
           className="pizza-block__image"
-          src={`http://localhost:4444/${imageUrl}`}
+          src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
           alt={`${dollName}`}
         />
       </div>

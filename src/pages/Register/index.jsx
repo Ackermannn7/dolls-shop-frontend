@@ -57,7 +57,7 @@ export const Register = () => {
     const data = await dispatch(
       fetchRegister({
         ...values,
-        avatarUrl: `http://localhost:4444/${imageUrl}`,
+        avatarUrl: `${process.env.REACT_APP_API_URL}${imageUrl}`,
       })
     );
     if (!data.payload) {
@@ -100,7 +100,7 @@ export const Register = () => {
           <>
             <img
               className={styles.uploadedAvatar}
-              src={`http://localhost:4444/${imageUrl}`}
+              src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
               alt="avatar"
             />
             <div className={styles.editButtons}>

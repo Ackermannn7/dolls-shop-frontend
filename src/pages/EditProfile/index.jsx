@@ -60,10 +60,13 @@ export const EditProfile = () => {
     const data = await dispatch(
       fetchRegister({
         ...values,
-        avatarUrl: `http://localhost:4444/${imageUrl}`,
+        avatarUrl: `${process.env.REACT_APP_API_URL}${imageUrl}`,
       })
     );
-    console.log({ ...values, avatarUrl: `http://localhost:4444/${imageUrl}` });
+    console.log({
+      ...values,
+      avatarUrl: `${process.env.REACT_APP_API_URL}${imageUrl}`,
+    });
     if (!data.payload) {
       return alert("Couldn't sign up");
     }
@@ -86,7 +89,7 @@ export const EditProfile = () => {
           <>
             <img
               className={styles.uploadedAvatar}
-              src={`http://localhost:4444/${imageUrl}`}
+              src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
               alt="avatar"
             />
             <div className={styles.editButtons}>

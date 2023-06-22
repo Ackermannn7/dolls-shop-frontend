@@ -70,7 +70,7 @@ export const FullProduct = () => {
         <div className="product">
           <div className="product-image">
             <img
-              src={`http://localhost:4444/${data.imageUrl}`}
+              src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
               alt={data.dollName}
             />
           </div>

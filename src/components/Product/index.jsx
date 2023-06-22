@@ -37,7 +37,7 @@ export const Product = (props) => {
       <Link to={`/dolls/${props._id}`}>
         <img
           className={styles.productImg}
-          src={`http://localhost:4444/${props.imageUrl}`}
+          src={`${process.env.REACT_APP_API_URL}${props.imageUrl}`}
           alt={props.dollName}
         />
         <h2 className={styles.name}>{props.dollName}</h2>

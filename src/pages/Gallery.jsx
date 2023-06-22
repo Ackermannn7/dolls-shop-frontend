@@ -31,7 +31,7 @@ export const Gallery = () => {
                 <img
                   key={index}
                   alt=""
-                  src={`http://localhost:4444/${obj.imageUrl}`}
+                  src={`${process.env.REACT_APP_API_URL}${obj.imageUrl}`}
                   style={{
                     width: "100%",
                     display: "block",
