@@ -9,8 +9,9 @@ h4 {
   letter-spacing: 1.2px;
 }
 .history-page table {
-  width: 85%;
+  width: 50%;
   margin: auto;
+  margin-bottom: 20px;
 }
 .history-page table,
 th,
@@ -50,4 +51,7 @@ table a {
   align-items: center;
   font-size: 1.2em;
   color: #232323;
+}
+.delivery-details {
+  font-size: 12px;
 }

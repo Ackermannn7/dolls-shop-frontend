@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../axios";
 
+// import MapContainer from "../components/MapContainer";
+
 export const OrderDetails = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -39,13 +41,13 @@ export const OrderDetails = () => {
   }
 
   return (
-    <div className="container history-page">
+    <div className="content history-page">
       <div className="recommended__header">
         <div className="section_header">
           <h3>Order Details</h3>
         </div>
       </div>
-      <table>
+      <table className="order-details">
         <thead>
           <tr>
             <th></th>
@@ -68,6 +70,39 @@ export const OrderDetails = () => {
               <td>{item.doll.price}$</td>
             </tr>
           ))}
+        </tbody>
+      </table>
+      <div className="recommended__header">
+        <div className="section_header">
+          <h3>Delivery Details</h3>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            {/* <th>Map Location</th> */}
+            <th>Customer</th>
+            <th>Phone Number</th>
+            <th>Region</th>
+            <th>City</th>
+            <th>Postal Branch</th>
+          </tr>
+        </thead>
+        <tbody className="delivery-details">
+          <tr key={data?.formData.orderFullName}>
+            {/* <td>
+              {
+                <MapContainer
+                  address={`${data?.formData.selectedCity}, ${data?.formData.selectedBranch}`}
+                />
+              }
+            </td> */}
+            <td>{data?.formData.orderFullName}</td>
+            <td>{data?.formData.orderPhoneNumber}</td>
+            <td>{data?.formData.selectedRegion}</td>
+            <td>{data?.formData.selectedCity}</td>
+            <td>{data?.formData.selectedBranch}</td>
+          </tr>
         </tbody>
       </table>
       <div className="bottom-details">

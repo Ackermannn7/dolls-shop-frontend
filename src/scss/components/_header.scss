@@ -9,37 +9,50 @@
   background-color: $background;
   padding: 10px 90px 30px 90px;
   z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    @media (max-width: 800px) {
-      flex-direction: column;
-      .header__right-block,
-      .categories {
-        margin-top: 20px;
-      }
+  @media (max-width: 1200px) {
+    padding: 10px 30px 30px 30px;
+  }
+  @media (max-width: 800px) {
+    padding: 10px 10px 10px 10px;
+    flex-direction: column;
+    .header__right-block,
+    .categories {
+      margin-top: 20px;
+      font-size: 12px;
     }
+  }
+
+  @media (max-width: 400px) {
   }
 
   &__right-block {
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    @media (max-width: 800px) {
+      margin-top: 20px;
+    }
   }
+
   &__cart {
     position: relative;
     margin-right: 30px;
     cursor: pointer;
+
     :hover {
       opacity: 0.8;
       transition: all 0.3s ease-in-out;
     }
+
     svg {
       color: $black;
     }
+
     span {
       position: absolute;
       font-weight: bold;
@@ -67,6 +80,7 @@
       color: #7b7b7b;
       flex-direction: column;
     }
+
     &:hover {
       cursor: pointer;
     }
@@ -74,9 +88,36 @@
 
   &__login {
     cursor: pointer;
+
     :hover {
       opacity: 0.8;
       transition: all 0.3s ease-in-out;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .header {
+      padding: 10px 15px 30px 15px;
+    }
+
+    .container {
+      padding: 0;
+    }
+
+    .header__right-block {
+      margin-top: 0;
+    }
+
+    .header__cart {
+      margin-right: 15px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .header__logo {
+      h1 {
+        font-size: 20px;
+      }
     }
   }
 }
@@ -85,12 +126,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
   &__avatar {
     width: 32px;
     height: 32px;
     border-radius: 30px;
     margin-right: 10px;
   }
+
   &__button {
     margin-left: 10px;
   }

@@ -24,7 +24,7 @@ export const UserPage = () => {
             <p className="user-email">Email: {userData?.email}</p>
             <div className="profile-buttons">
               <p>
-                <Link to="/changeProfile" className="change-button">
+                <Link to="/edit" className="change-button">
                   Change Profile
                 </Link>
               </p>

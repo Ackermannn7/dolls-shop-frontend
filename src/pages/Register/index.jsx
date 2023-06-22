@@ -93,7 +93,7 @@ export const Register = () => {
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
-        Edit Profile
+        Registration
       </Typography>
       <div className={styles.avatar}>
         {imageUrl ? (

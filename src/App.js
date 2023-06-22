@@ -18,7 +18,7 @@ import { ToastContainer } from "react-toastify";
 import { OrderHistory } from "./pages/OrderHistory";
 import { OrderDetails } from "./pages/OrderDetails";
 import { addProduct } from "./redux/slices/cart";
-
+// import { EditProfile } from "./pages/EditProfile";
 function App() {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
@@ -47,6 +47,7 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/me" element={<UserPage />} />
+          {/* <Route path="/edit" element={<EditProfile />} /> */}
           <Route path="/orderHistory" element={<OrderHistory />} />
           <Route path="/order/:id" element={<OrderDetails />} />
           <Route path="/login" element={<Login />} />

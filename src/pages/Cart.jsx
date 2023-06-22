@@ -5,12 +5,28 @@ import CartItem from "../components/CartItem";
 import { CartEmpty } from "../components/CartEmpty";
 import { clearCart } from "../redux/slices/cart";
 import PaymentModal from "../components/PaymentModal";
+import { OrderForm } from "../components/OrderForm";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector((state) => state.cart);
   const [openModal, setOpenModal] = React.useState(false);
 
+  // const [orderFullName, setOrderFullName] = React.useState("");
+  // const [orderPhoneNumber, setOrderPhoneNumber] = React.useState("");
+  // const [selectedRegion, setSelectedRegion] = React.useState("");
+  // const [selectedCity, setSelectedCity] = React.useState("");
+  // const [selectedBranch, setSelectedBranch] = React.useState("");
+
+  const [formData, setFormData] = React.useState({
+    orderFullName: "",
+    orderPhoneNumber: "",
+    // deliveryType: "",
+    selectedRegion: "",
+    selectedCity: "",
+    selectedBranch: "",
+  });
+  console.log(formData);
   const onClickClear = () => {
     dispatch(clearCart());
   };
@@ -21,6 +37,7 @@ const Cart = () => {
   }
   return (
     <div className="container container--cart">
+      <OrderForm setFormData={setFormData} />
       <div className="cart">
         <div className="cart__top">
           <h2 className="content__title">
@@ -92,7 +109,6 @@ const Cart = () => {
                 strokeLinejoin="round"
               ></path>
             </svg>
-
             <span>Clear Cart</span>
           </div>
         </div>
@@ -137,13 +153,13 @@ const Cart = () => {
 
               <span>Back</span>
             </Link>
-            <div className="button pay-btn">
-              <PaymentModal
-                open={openModal}
-                setOpen={setOpenModal}
-                totalPrice={totalPrice}
-              />
-            </div>
+
+            <PaymentModal
+              open={openModal}
+              setOpen={setOpenModal}
+              totalPrice={totalPrice}
+              formData={formData}
+            />
           </div>
         </div>
       </div>

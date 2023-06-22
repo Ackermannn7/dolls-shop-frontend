@@ -19,12 +19,13 @@ export const fetchOneOrder = createAsyncThunk("order/oneOrder", async (id) => {
 
 export const saveOrder = createAsyncThunk(
   "order/saveOrder",
-  async ({ userData, items, totalPrice }) => {
-    console.log(userData, items, totalPrice);
+  async ({ userData, items, totalPrice, formData }) => {
+    console.log(userData, items, totalPrice, formData);
     const { data } = await axios.post(`/saveOrder`, {
       userData,
       items,
       totalPrice,
+      formData,
     });
     return data;
   }

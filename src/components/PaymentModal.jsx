@@ -14,11 +14,6 @@ import { saveOrder } from "../redux/slices/order";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const buttonStyle = {
-  fontfamily: "Nunito, Roboto, system-ui, Tahoma, sans-serif",
-  color: "#f6f6f6",
-  fweight: "bold",
-};
 const modalStyle = {
   textalign: "center",
   position: "absolute",
@@ -32,15 +27,24 @@ const modalStyle = {
   p: 4,
 };
 
-export default function PaymentModal({ open, setOpen }) {
+export default function PaymentModal({ open, setOpen, formData }) {
+  console.log(formData);
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const userData = useSelector((state) => state.auth.data);
   const { items, totalPrice } = useSelector((state) => state.cart);
+
+  const isFormValid =
+    formData.orderFullName !== "" &&
+    formData.orderPhoneNumber !== "" &&
+    formData.selectedRegion !== "" &&
+    formData.selectedCity !== "" &&
+    formData.selectedBranch !== "";
+
   const onApproveHandler = async (data, actions) => {
     try {
       await actions.order.capture();
-      dispatch(saveOrder({ userData, items, totalPrice }));
+      dispatch(saveOrder({ userData, items, totalPrice, formData }));
       dispatch(clearCart()); // Clear the cart state
       window.localStorage.removeItem("cart");
       toast.success("Payment successful!", {
@@ -64,9 +68,14 @@ export default function PaymentModal({ open, setOpen }) {
 
   return (
     <div>
-      <Button sx={buttonStyle} onClick={handleOpen}>
+      <button
+        className={`button ${isFormValid ? "pay-btn" : "pay-btn__disabled"}`}
+        disabled={!isFormValid}
+        onClick={handleOpen}
+      >
         Pay Now
-      </Button>
+      </button>
+
       {isAuth ? (
         <Modal
           aria-labelledby="transition-modal-title"

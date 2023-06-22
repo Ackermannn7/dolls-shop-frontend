@@ -1,0 +1,27 @@
+.order-form {
+  width: 500px;
+}
+
+.field {
+  margin-bottom: 15px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.bottomText {
+  font-size: 1.1em;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.bottomLink {
+  color: rgb(25, 25, 238);
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "../axios";
+import axios from "../../axios";
 import { fetchRegister, selectIsAuth } from "../../redux/slices/authorization";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Link } from "react-router-dom";
@@ -15,6 +15,8 @@ import DeleteIcon from "@mui/icons-material/Clear";
 import IconButton from "@mui/material/IconButton";
 
 export const EditProfile = () => {
+  const userData = useSelector((state) => state.auth.data);
+
   const [imageUrl, setImageUrl] = React.useState("");
   const inputFileRef = React.useRef(null);
 
@@ -70,9 +72,9 @@ export const EditProfile = () => {
     }
   };
 
-  if (isAuth) {
-    return <Navigate to="/" />;
-  }
+  // if (isAuth) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <Paper classes={{ root: styles.root }}>
