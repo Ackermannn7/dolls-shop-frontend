@@ -11,7 +11,7 @@ export const Header = () => {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
-
+  console.log(userData);
   const { items } = useSelector((state) => state.cart);
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
   const navigate = useNavigate();
@@ -20,6 +20,7 @@ export const Header = () => {
       dispatch(logout());
       navigate("/");
       window.localStorage.removeItem("token");
+      window.localStorage.removeItem("cart");
       toast.success("Log out successful!", {
         position: "top-right",
         autoClose: 5000,
