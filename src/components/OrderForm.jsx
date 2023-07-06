@@ -176,7 +176,6 @@ export const OrderForm = ({ setFormData }) => {
         <div className="field">
           <FormControl fullWidth>
             <InputLabel>Region</InputLabel>
-
             <Select
               name="region"
               value={selectedRegionRef}

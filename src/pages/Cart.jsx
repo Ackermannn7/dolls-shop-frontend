@@ -12,12 +12,6 @@ const Cart = () => {
   const { items, totalPrice } = useSelector((state) => state.cart);
   const [openModal, setOpenModal] = React.useState(false);
 
-  // const [orderFullName, setOrderFullName] = React.useState("");
-  // const [orderPhoneNumber, setOrderPhoneNumber] = React.useState("");
-  // const [selectedRegion, setSelectedRegion] = React.useState("");
-  // const [selectedCity, setSelectedCity] = React.useState("");
-  // const [selectedBranch, setSelectedBranch] = React.useState("");
-
   const [formData, setFormData] = React.useState({
     orderFullName: "",
     orderPhoneNumber: "",
@@ -26,7 +20,6 @@ const Cart = () => {
     selectedCity: "",
     selectedBranch: "",
   });
-  console.log(formData);
   const onClickClear = () => {
     dispatch(clearCart());
   };

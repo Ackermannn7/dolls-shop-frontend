@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-
+import "../scss/pages/gallery.scss";
 import { fetchGallery } from "../redux/slices/gallery";
 
 export const Gallery = () => {
@@ -14,7 +14,7 @@ export const Gallery = () => {
   }, []);
 
   return (
-    <div style={{ padding: "50px" }}>
+    <div className="gallery">
       <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
         <Masonry gutter="20px">
           {(isGalleryLoading ? [...Array(15)] : gallery.items).map(
@@ -31,7 +31,8 @@ export const Gallery = () => {
                 <img
                   key={index}
                   alt=""
-                  src={`${process.env.REACT_APP_API_URL}${obj.imageUrl}`}
+                  // src={`${process.env.REACT_APP_API_URL}${obj.imageUrl}`}
+                  src={`http://localhost:4444/${obj.imageUrl}`}
                   style={{
                     width: "100%",
                     display: "block",

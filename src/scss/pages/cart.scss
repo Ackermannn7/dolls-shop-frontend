@@ -5,6 +5,9 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
   &--cart {
     max-width: 1200px;
     margin: 90px auto;
@@ -15,11 +18,18 @@
 }
 .cart {
   width: 50%;
-
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 10px;
+  }
   &__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 768px) {
+      margin-top: 100px;
+      justify-content: space-around;
+    }
   }
 
   .content__title {
@@ -75,21 +85,27 @@
   }
 
   &__item {
+    @media (max-width: 768px) {
+      width: 95%;
+    }
     display: flex;
+    justify-content: space-between;
     width: 100%;
     border-top: 1px solid $gray-line;
     padding-top: 30px;
     margin-top: 30px;
 
     &-img {
+      @media (max-width: 768px) {
+      }
       display: flex;
       align-items: center;
-      margin-right: 40px;
       width: 10%;
 
       img {
         width: 100px;
         height: auto;
+        border-radius: 10px;
       }
     }
 
@@ -97,9 +113,11 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 40%;
       margin-left: 100px;
       h3 {
+        @media (max-width: 768px) {
+          font-size: 18px;
+        }
         font-weight: bold;
         font-size: 22px;
         line-height: 27px;
@@ -156,6 +174,9 @@
       width: 33%;
 
       b {
+        @media (max-width: 768px) {
+          font-size: 18px;
+        }
         font-weight: bold;
         font-size: 22px;
         letter-spacing: 0.01em;
@@ -201,15 +222,14 @@
     &-details {
       display: flex;
       justify-content: space-between;
-
+      @media (max-width: 768px) {
+        justify-content: space-around;
+      }
       span {
+        @media (max-width: 768px) {
+          font-size: 16px;
+        }
         font-size: 22px;
-
-        // &:last-of-type {
-        //   b {
-        //     color: $orange;
-        //   }
-        // }
       }
     }
 
@@ -217,13 +237,17 @@
       display: flex;
       justify-content: space-between;
       margin-top: 40px;
-
+      @media (max-width: 768px) {
+        justify-content: space-around;
+      }
       .go-back-btn {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 210px;
-
+        @media (max-width: 768px) {
+          width: 100px;
+        }
         border-color: darken($color: $gray-line, $amount: 10);
 
         span {
@@ -251,15 +275,20 @@
       }
 
       .pay-btn {
+        @media (max-width: 768px) {
+          width: 100px;
+          margin-right: 20px;
+        }
         font-size: 16px;
         font-weight: 600;
-        min-width: 50px;
         width: 210px;
         &__disabled {
+          @media (max-width: 768px) {
+            width: 100px;
+          }
           width: 210px;
           font-size: 16px;
           font-weight: 600;
-          width: 210px;
           opacity: 0.4;
         }
       }
@@ -267,17 +296,27 @@
   }
 
   &--empty {
+    @media (max-width: 768px) {
+      width: 260px;
+      margin-top: 150px;
+    }
     margin: 80px auto;
     width: 620px;
     text-align: center;
 
     h2 {
+      @media (max-width: 768px) {
+        font-size: 24px;
+      }
       font-size: 36px;
       font-weight: 700;
       margin-bottom: 15px;
     }
 
     p {
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
       font-size: 20px;
       line-height: 145.4%;
       letter-spacing: 0.01em;
@@ -290,12 +329,20 @@
     }
 
     img {
+      @media (max-width: 768px) {
+        width: 240px;
+        margin: 20px auto;
+      }
       display: block;
       width: 300px;
-      margin: 45px auto 60px;
+      margin: 45px auto;
     }
 
     .button--black {
+      @media (max-width: 768px) {
+        font-size: 14px;
+        width: 140px;
+      }
       padding: 12px 0 14px;
       width: 230px;
       margin: 0 auto;

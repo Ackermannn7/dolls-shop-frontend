@@ -3,7 +3,6 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { selectIsAuth } from "../redux/slices/authorization";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,7 +27,6 @@ const modalStyle = {
 };
 
 export default function PaymentModal({ open, setOpen, formData }) {
-  console.log(formData);
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const userData = useSelector((state) => state.auth.data);

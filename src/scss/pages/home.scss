@@ -1,6 +1,9 @@
 .recommended {
   display: flex;
   flex-direction: column;
+  @media (max-width: 768px) {
+    margin-top: 100px;
+  }
   &__header {
     position: relative;
     display: flex;
@@ -10,4 +13,13 @@
     text-align: center;
     margin: 0px 80px 20px 100px;
   }
+}
+.carousel-container {
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+}
+
+.custom-dot-list-style {
+  /* Customize the appearance of the navigation dots */
 }

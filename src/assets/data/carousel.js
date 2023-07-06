@@ -7,14 +7,19 @@ export const responsive = {
   },
   desktop: {
     breakpoint: { max: 1024, min: 800 },
+    slidesToSlide: 2,
+
     items: 4,
   },
   tablet: {
     breakpoint: { max: 800, min: 464 },
+    slidesToSlide: 1,
+
     items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
+    slidesToSlide: 1,
     items: 1,
   },
 };

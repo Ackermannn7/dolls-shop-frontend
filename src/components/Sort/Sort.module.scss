@@ -1,4 +1,7 @@
 .container {
+  @media (max-width: 767px) {
+    height: 38px;
+  }
   margin-right: 12px;
   padding: 0 10px;
   margin-top: 5px;
@@ -13,11 +16,18 @@
 }
 
 .sort_by {
+  @media (max-width: 767px) {
+    font-size: 12px;
+    font-weight: 500;
+  }
   font-size: 16px;
   font-weight: 500;
 }
 
 .select {
+  @media (max-width: 767px) {
+    width: 100px;
+  }
   font-weight: bold;
   width: 100px;
   height: 30px;
@@ -50,6 +60,11 @@
 }
 
 .arrow_btn {
+  @media (max-width: 767px) {
+    height: 20px;
+    width: 20px;
+    margin-left: 0px;
+  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,6 +80,9 @@
 
 .up_arrow,
 .down_arrow {
+  @media (max-width: 767px) {
+    font-size: 1.6em;
+  }
   font-size: 2em;
   font-weight: bold;
   color: var(--black);

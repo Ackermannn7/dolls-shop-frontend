@@ -16,19 +16,6 @@ export const Sort = ({ sort, setSort }) => {
   return (
     <div className={styles.container}>
       <p className={styles.sort_by}>Sort By :</p>
-      {/* <TextField
-        select
-        variant="standard"
-        InputProps={{
-          disableUnderline: true,
-        }}
-        onChange={onSelectChange}
-        value={sort.sort}
-      >
-        <MenuItem value="dollName">Name</MenuItem>
-        <MenuItem value="price">Price</MenuItem>
-        <MenuItem value="popularity">Popularity</MenuItem>
-      </TextField> */}
       <select
         onChange={onSelectChange}
         className={styles.select}

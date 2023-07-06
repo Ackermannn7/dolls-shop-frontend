@@ -12,6 +12,8 @@ export const FullProduct = () => {
   const [data, setData] = React.useState();
   const { comments } = useSelector((state) => state.comments);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [deviceType, setDeviceType] = React.useState("");
+
   const { id } = useParams();
   const dispatch = useDispatch();
   const onClickAdd = () => {
@@ -45,6 +47,19 @@ export const FullProduct = () => {
         console.warn(err);
         alert("Error getting doll!");
       });
+    const getDeviceType = () => {
+      const { userAgent } = navigator;
+
+      if (/mobile/i.test(userAgent)) {
+        return "mobile";
+      } else if (/tablet/i.test(userAgent)) {
+        return "tablet";
+      } else {
+        return "desktop";
+      }
+    };
+    // Set the device type in the state
+    setDeviceType(getDeviceType());
   }, []);
 
   React.useEffect(() => {
@@ -67,24 +82,48 @@ export const FullProduct = () => {
   return (
     <div className="content">
       <div className="fullProduct">
-        <div className="product">
-          <div className="product-image">
-            <img
-              src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
-              alt={data.dollName}
-            />
+        {deviceType !== "desktop" ? (
+          <div className="product">
+            <div className="product-info">
+              <h2 className="product-title">{data.dollName}</h2>
+              <div className="product-image">
+                <img
+                  // src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
+                  src={`http://localhost:4444/${data.imageUrl}`}
+                  alt={data.dollName}
+                />
+              </div>
+              <p className="product-price">{`$${data.price}`}</p>
+              <p className="product-description">{data.description}</p>
+              <p>
+                <button onClick={onClickAdd} className="product-button">
+                  Add to Cart
+                </button>
+              </p>
+            </div>
           </div>
-          <div className="product-info">
-            <h2 className="product-title">{data.dollName}</h2>
-            <p className="product-price">{`$${data.price}`}</p>
-            <p className="product-description">{data.description}</p>
-            <p>
-              <button onClick={onClickAdd} className="product-button">
-                Add to Cart
-              </button>
-            </p>
+        ) : (
+          <div className="product">
+            <div className="product-image">
+              <img
+                // src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
+                src={`http://localhost:4444/${data.imageUrl}`}
+                alt={data.dollName}
+              />
+            </div>
+            <div className="product-info">
+              <h2 className="product-title">{data.dollName}</h2>
+              <p className="product-price">{`$${data.price}`}</p>
+              <p className="product-description">{data.description}</p>
+              <p>
+                <button onClick={onClickAdd} className="product-button">
+                  Add to Cart
+                </button>
+              </p>
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="comments_header">
           <h3>Comments</h3>
         </div>

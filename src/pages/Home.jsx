@@ -10,7 +10,7 @@ const Home = () => {
   const [data, setData] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
   const [deviceType, setDeviceType] = React.useState("");
-
+  console.log(deviceType);
   React.useEffect(() => {
     axios
       .get(`/dollsCarousel`)
@@ -33,12 +33,10 @@ const Home = () => {
         return "desktop";
       }
     };
-
     // Set the device type in the state
     setDeviceType(getDeviceType());
   }, []);
   if (isLoading) {
-    console.log(isLoading);
     return (
       <Carousel
         responsive={responsive}
@@ -48,7 +46,7 @@ const Home = () => {
         ssr={true} // means to render carousel on server-side.
         slidesToSlide={2}
         infinite={true}
-        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+        autoPlay={deviceType !== "mobile" ? true : false}
         autoPlaySpeed={1000}
         keyBoardControl={true}
         customTransition="all .5s"
@@ -81,15 +79,14 @@ const Home = () => {
           ssr={true} // means to render carousel on server-side.
           slidesToSlide={2}
           infinite={true}
-          autoPlay={true}
-          // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+          autoPlay={deviceType !== "desktop" ? true : false}
           autoPlaySpeed={3000}
           keyBoardControl={true}
           customTransition="all .5s"
           transitionDuration={500}
           containerClass="carousel-container"
           removeArrowOnDeviceType={["tablet", "mobile"]}
-          // deviceType={this.props.deviceType}
+          deviceType={deviceType}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >

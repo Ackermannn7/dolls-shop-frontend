@@ -16,17 +16,20 @@
   @media (max-width: 1200px) {
     padding: 10px 30px 30px 30px;
   }
-  @media (max-width: 800px) {
+  @media (max-width: 767px) {
     padding: 10px 10px 10px 10px;
     flex-direction: column;
     .header__right-block,
     .categories {
       margin-top: 20px;
-      font-size: 12px;
     }
-  }
-
-  @media (max-width: 400px) {
+    .categories {
+      li {
+        text-align: center;
+        font-size: 12px;
+        padding: 12px;
+      }
+    }
   }
 
   &__right-block {

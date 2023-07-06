@@ -107,12 +107,15 @@ export const Header = () => {
                 <Avatar sx={{ width: 32, height: 32, marginBottom: 0.5 }} />
               )}
             </Link>
-            <div className="auth-user__button"></div>
             <Button
               onClick={onClickLogout}
               variant="contained"
               sx={{
+                marginLeft: "10px",
                 backgroundColor: "#232323",
+                "@media (max-width:768px)": {
+                  fontSize: "12px",
+                },
                 "&:hover": {
                   backgroundColor: "#c70000", // Change this to the desired hover background color
                 },

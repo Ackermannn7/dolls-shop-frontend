@@ -3,6 +3,10 @@
   padding: 50px;
   border: 1px solid #dedede;
   margin: 50px auto;
+  @media (max-width: 768px) {
+    margin: 150px auto;
+    width: 300px;
+  }
 }
 
 .field {
@@ -23,6 +27,10 @@
 }
 
 .editButtons {
+  @media (max-width: 768px) {
+    right: 25px;
+    top: -20px;
+  }
   position: absolute;
   right: 65px;
   border-radius: 10px;
@@ -41,9 +49,13 @@
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
+  @media (max-width: 768px) {
+    font-size: 0.9em;
+  }
 }
 
 .bottomLink {
+  width: 50px;
   color: rgb(25, 25, 238);
 }
 
