@@ -8,12 +8,12 @@ export const Footer = () => {
         <ul>
           <li>Dolls</li>
           <li>Gallery</li>
+          <li>Contact</li>
         </ul>
       </div>
       <div className="footer__info">
         <h4>Info</h4>
         <ul>
-          <li>Contact</li>
           <li>Terms and conditions</li>
           <li>Privacy policy</li>
           <li>Distribution</li>
