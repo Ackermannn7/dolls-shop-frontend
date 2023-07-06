@@ -38,29 +38,31 @@ const Home = () => {
   }, []);
   if (isLoading) {
     return (
-      <Carousel
-        responsive={responsive}
-        swipeable={false}
-        draggable={false}
-        showDots={true}
-        ssr={true} // means to render carousel on server-side.
-        slidesToSlide={2}
-        infinite={true}
-        autoPlay={deviceType !== "mobile" ? true : false}
-        autoPlaySpeed={1000}
-        keyBoardControl={true}
-        customTransition="all .5s"
-        transitionDuration={500}
-        containerClass="carousel-container"
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-        deviceType={deviceType}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-      >
-        {[...Array(5)].map((obj, index) => (
-          <Product key={index} isLoading={true} />
-        ))}
-      </Carousel>
+      <div className="carousel-container">
+        <Carousel
+          responsive={responsive}
+          swipeable={true}
+          draggable={false}
+          showDots={true}
+          ssr={true} // means to render carousel on server-side.
+          slidesToSlide={2}
+          infinite={true}
+          autoPlay={deviceType !== "mobile" ? true : false}
+          autoPlaySpeed={1000}
+          keyBoardControl={true}
+          customTransition="all .5s"
+          transitionDuration={500}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={["tablet", "mobile"]}
+          deviceType={deviceType}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+        >
+          {[...Array(5)].map((obj, index) => (
+            <Product key={index} isLoading={true} />
+          ))}
+        </Carousel>
+      </div>
     );
   }
   return (
@@ -73,7 +75,7 @@ const Home = () => {
         </div>
         <Carousel
           responsive={responsive}
-          swipeable={false}
+          swipeable={true}
           draggable={false}
           showDots={true}
           ssr={true} // means to render carousel on server-side.

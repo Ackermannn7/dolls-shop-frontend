@@ -3,6 +3,9 @@
   flex-direction: column;
   margin: 0 auto;
   padding: 20px;
+  @media (max-width: 768px) {
+    margin: 50px auto;
+  }
 }
 
 .user {
@@ -18,7 +21,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  @media (max-width: 768px) {
+    font-size: 1.2em;
+  }
   padding-left: 20px;
 }
 
@@ -26,11 +31,19 @@
   font-size: 2em;
   font-weight: bold;
   margin-bottom: 50px;
+  @media (max-width: 768px) {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
 }
 
 .user-email {
   margin-bottom: 50px;
   font-size: 2em;
+  @media (max-width: 768px) {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
 }
 .profile-buttons {
   display: flex;
@@ -38,7 +51,13 @@
   justify-content: space-around;
 }
 .change-button {
-  margin: 0 20px;
+  @media (max-width: 768px) {
+    justify-content: space-between;
+
+    font-size: 0.7em;
+    margin: 0 10px;
+    padding: 10px 10px;
+  }
   border-radius: 10px;
   font-weight: bold;
   border: none;
@@ -48,7 +67,6 @@
   background-color: #000;
   text-align: center;
   cursor: pointer;
-  width: 100%;
   font-size: 18px;
   &:hover {
     opacity: 0.7;

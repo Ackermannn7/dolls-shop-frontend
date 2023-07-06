@@ -5,6 +5,7 @@ import axios from "../axios";
 // import MapContainer from "../components/MapContainer";
 
 export const OrderDetails = () => {
+  const [deviceType, setDeviceType] = React.useState("");
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
@@ -21,6 +22,19 @@ export const OrderDetails = () => {
         console.warn(err);
         alert("Error getting order details!");
       });
+    const getDeviceType = () => {
+      const { userAgent } = navigator;
+
+      if (/mobile/i.test(userAgent)) {
+        return "mobile";
+      } else if (/tablet/i.test(userAgent)) {
+        return "tablet";
+      } else {
+        return "desktop";
+      }
+    };
+    // Set the device type in the state
+    setDeviceType(getDeviceType());
   }, [id]);
   console.log(data);
   if (isLoading) {
@@ -42,10 +56,8 @@ export const OrderDetails = () => {
 
   return (
     <div className="content history-page">
-      <div className="recommended__header">
-        <div className="section_header">
-          <h3>Order Details</h3>
-        </div>
+      <div className="section_header">
+        <h3>Order Details</h3>
       </div>
       <table className="order-details">
         <thead>
@@ -61,8 +73,8 @@ export const OrderDetails = () => {
             <tr key={item._id}>
               <td>
                 <img
-                  src={`${process.env.REACT_APP_API_URL}${item.doll.imageUrl}`}
-                  // src={`http://localhost:4444/${item.doll.imageUrl}`}
+                  // src={`${process.env.REACT_APP_API_URL}${item.doll.imageUrl}`}
+                  src={`http://localhost:4444/${item.doll.imageUrl}`}
                   alt={item.doll.dollName}
                 />
               </td>
@@ -73,39 +85,75 @@ export const OrderDetails = () => {
           ))}
         </tbody>
       </table>
-      <div className="recommended__header">
-        <div className="section_header">
-          <h3>Delivery Details</h3>
-        </div>
+      <div className="section_header">
+        <h3>Delivery Details</h3>
       </div>
-      <table>
-        <thead>
-          <tr>
-            {/* <th>Map Location</th> */}
-            <th>Customer</th>
-            <th>Phone Number</th>
-            <th>Region</th>
-            <th>City</th>
-            <th>Postal Branch</th>
-          </tr>
-        </thead>
-        <tbody className="delivery-details">
-          <tr key={data?.formData.orderFullName}>
-            {/* <td>
+      {deviceType === "mobile" ? (
+        <table className="delivery-details">
+          <tbody>
+            <tr>
+              <td>
+                <strong>Customer:</strong>
+              </td>
+              <td>{data?.formData.orderFullName}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Phone Number:</strong>
+              </td>
+              <td>{data?.formData.orderPhoneNumber}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Region:</strong>
+              </td>
+              <td>{data?.formData.selectedRegion}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>City:</strong>
+              </td>
+              <td>{data?.formData.selectedCity}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Postal Branch:</strong>
+              </td>
+              <td>{data?.formData.selectedBranch}</td>
+            </tr>
+          </tbody>
+        </table>
+      ) : (
+        <table className="delivery-details">
+          <thead>
+            <tr>
+              {/* <th>Map Location</th> */}
+              <th>Customer</th>
+              <th>Phone Number</th>
+              <th>Region</th>
+              <th>City</th>
+              <th>Postal Branch</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr key={data?.formData.orderFullName}>
+              {/* <td>
               {
                 <MapContainer
                   address={`${data?.formData.selectedCity}, ${data?.formData.selectedBranch}`}
                 />
               }
             </td> */}
-            <td>{data?.formData.orderFullName}</td>
-            <td>{data?.formData.orderPhoneNumber}</td>
-            <td>{data?.formData.selectedRegion}</td>
-            <td>{data?.formData.selectedCity}</td>
-            <td>{data?.formData.selectedBranch}</td>
-          </tr>
-        </tbody>
-      </table>
+              <td>{data?.formData.orderFullName}</td>
+              <td>{data?.formData.orderPhoneNumber}</td>
+              <td>{data?.formData.selectedRegion}</td>
+              <td>{data?.formData.selectedCity}</td>
+              <td>{data?.formData.selectedBranch}</td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+
       <div className="bottom-details">
         <span>
           {" "}

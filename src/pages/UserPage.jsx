@@ -6,18 +6,35 @@ import { useSelector } from "react-redux";
 export const UserPage = () => {
   const userData = useSelector((state) => state.auth.data);
 
-  console.log(userData);
   return (
     <div className="content">
       <div className="user-page">
         <div className="user">
           {userData?.avatarUrl ? (
             <Avatar
-              sx={{ width: 200, height: 200, marginBottom: 0.5 }}
+              sx={{
+                width: 200,
+                height: 200,
+                marginBottom: 0.5,
+                "@media (max-width:768px)": {
+                  width: "100px",
+                  height: "100px",
+                },
+              }}
               src={userData.avatarUrl}
             />
           ) : (
-            <Avatar sx={{ width: 200, height: 200, marginBottom: 0.5 }} />
+            <Avatar
+              sx={{
+                width: 200,
+                height: 200,
+                marginBottom: 0.5,
+                "@media (max-width:768px)": {
+                  width: "100px",
+                  height: "100px",
+                },
+              }}
+            />
           )}
           <div className="user-info">
             <h2 className="user-fullName">{userData?.fullName}</h2>

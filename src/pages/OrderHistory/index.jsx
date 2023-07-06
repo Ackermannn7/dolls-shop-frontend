@@ -17,10 +17,8 @@ export const OrderHistory = () => {
 
   return (
     <div className="content">
-      <div className="recommended__header">
-        <div className="section_header">
-          <h3>Order History</h3>
-        </div>
+      <div className="section_header">
+        <h3>Order History</h3>
       </div>
       {order && Array.isArray(order) && order.length > 0 ? (
         <div className="history-page">

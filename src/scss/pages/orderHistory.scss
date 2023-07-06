@@ -1,3 +1,8 @@
+.section_header {
+  @media (max-width: 768px) {
+    margin: 80px 0 auto;
+  }
+}
 .history-page {
   overflow-x: auto;
 }
@@ -9,9 +14,8 @@ h4 {
   letter-spacing: 1.2px;
 }
 .history-page table {
-  width: 50%;
-  margin: auto;
-  margin-bottom: 20px;
+  width: 90%;
+  margin: 20px auto;
 }
 .history-page table,
 th,
@@ -22,6 +26,9 @@ td {
 }
 th,
 td {
+  @media (max-width: 768px) {
+    font-size: 0.8em;
+  }
   font-size: 1.2em;
   text-align: center;
   padding: 10px;
@@ -40,8 +47,11 @@ table a {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: 50px;
+  margin: 20px;
   span {
+    @media (max-width: 768px) {
+      font-size: 1em;
+    }
     font-size: 22px;
   }
 }
@@ -53,5 +63,9 @@ table a {
   color: #232323;
 }
 .delivery-details {
+  @media (max-width: 768px) {
+    font-size: 1em;
+  }
+
   font-size: 12px;
 }

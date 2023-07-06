@@ -3,28 +3,44 @@
   flex-direction: column;
   &__header {
     @media (max-width: 768px) {
+      margin: 0px 25px 20px 20px;
+
       margin-top: 80px;
       flex-direction: column;
     }
     @media (max-width: 300px) {
+      margin: 0px 80px 20px 0;
+
       margin-top: 100px;
       flex-direction: column;
     }
 
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-    margin: 0px 80px 20px 100px;
+    font-size: 1.3em;
+    &:after {
+      content: "";
+      width: 64px;
+      border-bottom: 2px solid #272727;
+      bottom: -6px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      position: absolute;
+      display: block;
+    }
   }
   &__description {
-    li {
-      margin-bottom: 10px;
-    }
-    @media (max-width: 768px) {
+    ul > li {
+      margin: 0 80px;
       text-align: justify;
+      font-size: 1.2em;
+      padding: 20px;
+      margin-bottom: 10px;
+      @media (max-width: 768px) {
+        padding: 10px;
+        margin: 0 20px;
+        font-size: 0.8em;
+      }
     }
   }
 }
