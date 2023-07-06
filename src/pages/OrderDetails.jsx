@@ -36,7 +36,6 @@ export const OrderDetails = () => {
     // Set the device type in the state
     setDeviceType(getDeviceType());
   }, [id]);
-  console.log(data);
   if (isLoading) {
     return (
       <div

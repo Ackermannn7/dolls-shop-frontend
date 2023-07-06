@@ -33,8 +33,6 @@ export const EditProfile = () => {
     }
   };
 
-  console.log(imageUrl);
-
   const onClickRemoveImage = () => {
     setImageUrl("");
   };

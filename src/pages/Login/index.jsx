@@ -22,7 +22,6 @@ export const Login = () => {
   } = useForm({
     mode: "onChange",
   });
-  console.log(errors);
   const onSubmit = async (values) => {
     const data = await dispatch(fetchLogin(values));
     if (!data.payload) {

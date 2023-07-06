@@ -4,23 +4,18 @@ import axios from "../../axios";
 export const fetchOrderHistory = createAsyncThunk(
   "order/orderHistory",
   async (_id) => {
-    console.log(_id);
     const { data } = await axios.get(`/orderHistory/${_id}`);
-    console.log(data);
     return data;
   }
 );
 export const fetchOneOrder = createAsyncThunk("order/oneOrder", async (id) => {
-  console.log(id);
   const { data } = await axios.get(`/order/${id}`);
-  console.log(data);
   return data;
 });
 
 export const saveOrder = createAsyncThunk(
   "order/saveOrder",
   async ({ userData, items, totalPrice, formData }) => {
-    console.log(userData, items, totalPrice, formData);
     const { data } = await axios.post(`/saveOrder`, {
       userData,
       items,

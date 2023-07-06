@@ -10,7 +10,6 @@ const Home = () => {
   const [data, setData] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
   const [deviceType, setDeviceType] = React.useState("");
-  console.log(deviceType);
   React.useEffect(() => {
     axios
       .get(`/dollsCarousel`)

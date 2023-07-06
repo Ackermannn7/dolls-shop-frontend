@@ -13,7 +13,6 @@ const MapContainer = (props) => {
 
   const parts = address.split(delimiter);
   const result = parts.length > 1 ? parts[1].trim() : "";
-  console.log(result);
   const mapRef = useRef(null); // Create a reference to the map component
 
   const geocodeAddress = (address) => {
