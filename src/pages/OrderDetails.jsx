@@ -86,8 +86,8 @@ export const OrderDetails = () => {
             <tr key={item._id}>
               <td>
                 <img
-                  // src={`${process.env.REACT_APP_API_URL}${item.doll.imageUrl}`}
-                  src={`http://localhost:4444/${item.doll.imageUrl}`}
+                  src={`${process.env.REACT_APP_API_URL}${item.doll.imageUrl}`}
+                  // src={`http://localhost:4444/${item.doll.imageUrl}`}
                   alt={item.doll.dollName}
                 />
               </td>
