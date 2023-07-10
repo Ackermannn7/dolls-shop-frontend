@@ -1,22 +1,25 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export const Footer = () => {
+  const [t, i18n] = useTranslation("global");
+
   return (
     <div className="footer">
       <div className="footer__shop">
-        <h4>Shop</h4>
+        <h4>{t("footer.shop.shopTitle")}</h4>
         <ul>
-          <li>Dolls</li>
-          <li>Gallery</li>
-          <li>Contact</li>
+          <li>{t("footer.shop.shopCategory1")}</li>
+          <li>{t("footer.shop.shopCategory2")}</li>
+          <li>{t("footer.shop.shopCategory3")}</li>
         </ul>
       </div>
       <div className="footer__info">
-        <h4>Info</h4>
+        <h4>{t("footer.info.infoTitle")}</h4>
         <ul>
-          <li>Terms and conditions</li>
-          <li>Privacy policy</li>
-          <li>Distribution</li>
+          <li>{t("footer.info.infoCategory1")}</li>
+          <li>{t("footer.info.infoCategory2")}</li>
+          <li>{t("footer.info.infoCategory3")}</li>
         </ul>
       </div>
     </div>

@@ -6,8 +6,11 @@ import { CartEmpty } from "../components/CartEmpty";
 import { clearCart } from "../redux/slices/cart";
 import PaymentModal from "../components/PaymentModal";
 import { OrderForm } from "../components/OrderForm";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
+  const [t, i18n] = useTranslation("global");
+
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector((state) => state.cart);
   const [openModal, setOpenModal] = React.useState(false);
@@ -63,7 +66,7 @@ const Cart = () => {
                 strokeLinejoin="round"
               ></path>
             </svg>
-            Cart
+            {t("cartPage.cart.title")}
           </h2>
           <div onClick={onClickClear} className="cart__clear">
             <svg
@@ -102,25 +105,23 @@ const Cart = () => {
                 strokeLinejoin="round"
               ></path>
             </svg>
-            <span>Clear Cart</span>
+            <span>{t("cartPage.cart.clearCartBtn")}</span>
           </div>
         </div>
         <div className="content__items">
-          {items.length !== 0 ? (
-            items.map((item) => <CartItem key={item.id} {...item} />)
-          ) : (
-            <p>No items in the cart.</p>
-          )}
+          {items.map((item) => (
+            <CartItem key={item.id} {...item} />
+          ))}
         </div>
         <div className="cart__bottom">
           <div className="cart__bottom-details">
             <span>
               {" "}
-              Quantity: <b>{totalCount}</b>{" "}
+              {t("cartPage.cart.quantity")} <b>{totalCount}</b>{" "}
             </span>
             <span>
               {" "}
-              Total Price: <b>{totalPrice.toFixed(2)}$</b>{" "}
+              {t("cartPage.cart.price")} <b>{totalPrice.toFixed(2)}$</b>{" "}
             </span>
           </div>
           <div className="cart__bottom-buttons">
@@ -144,7 +145,7 @@ const Cart = () => {
                 ></path>
               </svg>
 
-              <span>Back</span>
+              <span>{t("cartPage.cart.backBtn")}</span>
             </Link>
 
             <PaymentModal

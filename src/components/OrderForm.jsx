@@ -9,7 +9,11 @@ import {
   TextField,
 } from "@mui/material";
 import "../scss/components/_orderform.scss";
+import { useTranslation } from "react-i18next";
+
 export const OrderForm = ({ setFormData }) => {
+  const [t, i18n] = useTranslation("global");
+
   const {
     register,
     formState: { errors, isValid },
@@ -142,18 +146,18 @@ export const OrderForm = ({ setFormData }) => {
 
   return (
     <div className="order-form">
-      <h2 className="title">Checkout</h2>
+      <h2 className="title">{t("cartPage.checkoutform.title")}</h2>
       <form>
         <div className="field">
           <TextField
             onInput={handleOrderFullNameChange}
             // onChange={handleOrderFullNameChange}
-            label="Full Name"
+            label={t("cartPage.checkoutform.fullNameLabel")}
             error={Boolean(errors.fullName?.message)}
             helperText={errors.fullName?.message}
             type="text"
             {...register("fullName", {
-              required: "Please enter your full name",
+              required: t("cartPage.checkoutform.fullNameMessage"),
             })}
             fullWidth
           />
@@ -163,19 +167,19 @@ export const OrderForm = ({ setFormData }) => {
             onInput={handleOrderPhoneNumberChange}
             // onChange={handleOrderPhoneNumberChange}
             className="field"
-            label="Phone Number"
+            label={t("cartPage.checkoutform.phoneNumberLabel")}
             type="tel"
             error={Boolean(errors.phoneNumber?.message)}
             helperText={errors.phoneNumber?.message}
             {...register("phoneNumber", {
-              required: "Please enter your phone number",
+              required: t("cartPage.checkoutform.phoneNumberMessage"),
             })}
             fullWidth
           />
         </div>
         <div className="field">
           <FormControl fullWidth>
-            <InputLabel>Region</InputLabel>
+            <InputLabel>{t("cartPage.checkoutform.regionLabel")}</InputLabel>
             <Select
               name="region"
               value={selectedRegionRef}
@@ -192,7 +196,7 @@ export const OrderForm = ({ setFormData }) => {
         </div>
         <div className="field">
           <FormControl fullWidth>
-            <InputLabel>City</InputLabel>
+            <InputLabel>{t("cartPage.checkoutform.cityLabel")}</InputLabel>
             <Select
               name="city"
               value={selectedCityRef}
@@ -209,7 +213,7 @@ export const OrderForm = ({ setFormData }) => {
         </div>
         <div className="field">
           <FormControl fullWidth>
-            <InputLabel>Branch</InputLabel>
+            <InputLabel>{t("cartPage.checkoutform.branchLabel")}</InputLabel>
             <Select
               name="branch"
               value={selectedBranchRef}

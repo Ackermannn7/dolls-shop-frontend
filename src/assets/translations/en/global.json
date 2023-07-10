@@ -1,0 +1,154 @@
+{
+  "header": {
+    "title": "Dolls for All",
+    "description": "Dolls for your house and soul",
+    "categories": ["Dolls", "Gallery", "About Us", "Language"],
+    "logoutbtn": "Log out",
+    "logoutMessage": "Are you sure you want to log out?"
+  },
+  "homepage": {
+    "recommendedTitle": "Recommended Dolls",
+    "whyUsTitle": "Why Dolls For All?",
+    "whyUsDescriptionHeader1": "Exquisite Craftsmanship:",
+    "whyUsDescriptionHeader2": "Uniquely Personalized:",
+    "whyUsDescriptionHeader3": "Quality Materials:",
+    "whyUsDescriptionHeader4": "Attention to Detail:",
+    "whyUsDescriptionHeader5": "Imaginative Play and Emotional Connection:",
+    "whyUsDescription1": "Each doll in our shop is meticulously handcrafted by skilled artisans who pour their heart and soul into every creation. From the delicate stitching to the intricately painted features, our dolls reflect the dedication and artistry of our talented craftsmen.",
+    "whyUsDescription2": "We understand that every customer is looking for something special and one-of-a-kind. That's why we offer a range of customization options to make your doll truly unique. From choosing hair color and style to selecting outfits and accessories, you have the opportunity to create a doll that perfectly captures your vision.",
+    "whyUsDescription3": "We believe in using only the finest materials to ensure that our dolls are of the highest quality. From premium fabrics to non-toxic paints, we prioritize safety and durability, ensuring that your doll can be cherished for years to come.",
+    "whyUsDescription4": "We believe that it's the little details that make a doll truly special. Our artisans pay close attention to every tiny detail, from the intricate facial expressions to the carefully chosen embellishments. These details bring our dolls to life and add an extra touch of magic.",
+    "whyUsDescription5": "Our dolls are not just toys; they are companions that inspire imaginative play and foster emotional connections. Whether it's a doll for a child to play with or a special keepsake for collectors, our dolls have the power to ignite imagination and create lasting memories."
+  },
+  "footer": {
+    "shop": {
+      "shopTitle": "SHOP",
+      "shopCategory1": "Dolls",
+      "shopCategory2": "Gallery",
+      "shopCategory3": "Contact"
+    },
+    "info": {
+      "infoTitle": "INFO",
+      "infoCategory1": "Terms and Conditions",
+      "infoCategory2": "Privacy Policy",
+      "infoCategory3": "Distribution"
+    }
+  },
+  "productCard": {
+    "readMore": "read more...",
+    "addToCartBtn": "Add to Cart"
+  },
+  "dollsList": {
+    "title": "Dolls",
+    "searchLabel": "Search for Doll ...",
+    "sortBy": "Sort By: ",
+    "sortCategories": ["Name 🎀", "Price ＄", "Popularity ⭐"]
+  },
+  "fullProductComments": {
+    "title": "Comments",
+    "inputLabel": "Write a Comment ...",
+    "sendCommentBtn": "SEND"
+  },
+  "aboutUs": {
+    "title": "About Us",
+    "aboutUsDescription1": "Welcome to Dolls for All, your go-to online shop for exquisite hand-made dolls that are crafted with passion and care. Here's a glimpse into who we are and what we stand for:",
+    "aboutUsDescription2": "At Dolls for All, we believe that every doll has a story to tell and a special place in someone's heart. We are a dedicated team of artisans and enthusiasts who are deeply passionate about the art of doll-making. Our mission is to create dolls that bring joy, inspire imagination, and create lasting memories for people of all ages.",
+    "aboutUsDescription3": "What sets us apart is our commitment to craftsmanship and attention to detail. Each doll in our collection is meticulously handcrafted with love and precision. Our skilled artisans pour their creativity and expertise into every stitch, ensuring that each doll is a true work of art. From the carefully painted facial features to the intricately designed outfits and accessories, we strive for perfection in every aspect of our dolls.",
+    "aboutUsDescription4": "Dolls for All is all about inclusivity and diversity. We believe that dolls should reflect the beauty of the world around us, embracing different cultures, ethnicities, and body types. Our collection features a wide range of dolls with varying skin tones, hair textures, and styles, allowing everyone to find a doll that resonates with them.Dolls for All is all about inclusivity and diversity. We believe that dolls should reflect the beauty of the world around us, embracing different cultures, ethnicities, and body types. Our collection features a wide range of dolls with varying skin tones, hair textures, and styles, allowing everyone to find a doll that resonates with them.",
+    "aboutUsDescription5": "Quality and safety are of utmost importance to us. We use only premium materials, ensuring that our dolls are not only visually stunning but also durable and safe for children. We adhere to strict quality standards throughout the production process, ensuring that every doll meets our high expectations.",
+    "aboutUsDescription6": "Customer satisfaction is at the core of our values. We strive to provide exceptional customer service, from a user-friendly website experience to prompt and reliable shipping. Our friendly and knowledgeable customer support team is always ready to assist you, answer your questions, and make your shopping experience memorable.",
+    "aboutUsDescription7": "Dolls for All is not just an online shop; it's a community. We are passionate about creating connections and fostering a love for dolls. We regularly engage with our customers through social media, sharing doll stories, tips, and inspiration. We encourage you to join our community, share your love for dolls, and become a part of our vibrant and inclusive family.",
+    "aboutUsDescription8": "Thank you for choosing Dolls for All. We are honored to be a part of your doll-collecting journey and look forward to bringing smiles to your faces with our hand-made creations."
+  },
+  "cartPage": {
+    "empty": {
+      "title": "The Cart is Empty!",
+      "description": [
+        "Looks like you haven`t added anything to your cart yet.",
+        "To do this, please return to the main page."
+      ]
+    },
+    "cart": {
+      "title": "Cart",
+      "quantity": "Quantity: ",
+      "price": "Total Price: ",
+      "clearCartBtn": "Clear Cart",
+      "backBtn": "Back",
+      "payBtn": "Pay Now"
+    },
+    "checkoutform": {
+      "title": "Checkout",
+      "fullNameLabel": "Full Name",
+      "fullNameMessage": "Please enter your full name",
+      "phoneNumberLabel": "Phone Number",
+      "phoneNumberMessage": "Please enter your phone number",
+      "regionLabel": "Region",
+      "cityLabel": "City",
+      "branchLabel": "Branch"
+    }
+  },
+  "loginForm": {
+    "title": "Log in into your Account",
+    "emailLabel": "E-Mail",
+    "emailMessage": "Enter your mail",
+    "passwordLabel": "Password",
+    "passwordMessage": "Enter your password",
+    "loginBtn": "LOG IN",
+    "registerText": "Don't have an account?",
+    "registerLink": "Sign up"
+  },
+  "registerForm": {
+    "title": "Registration",
+    "nameLabel": "Full Name",
+    "nameMessage": "Enter your full name",
+    "emailLabel": "E-Mail",
+    "emailMessage": "Enter your mail",
+    "passwordLabel": "Password",
+    "passwordMessage": "Enter your password",
+    "registerBtn": "SIGN UP",
+    "loginText": "Already have an account?",
+    "loginLink": "Log in"
+  },
+  "profilePage": {
+    "changeBtn": "Change Profile",
+    "orderBtn": "Order History"
+  },
+  "orderHistoryPage": {
+    "title": "Order History",
+    "orders": "You have orders ",
+    "orderID": "Order ID",
+    "purchaseDate": "Order Date",
+    "viewBtn": "View",
+    "noOrderAvaiable": "No order history available!",
+    "orderDetails": {
+      "title": "Order Details",
+      "dollName": "Doll",
+      "quantity": "Quantity",
+      "price": "Price $"
+    },
+    "deliveryDetails": {
+      "title": "Delivery Details",
+      "customer": "Customer",
+      "phoneNumber": "Phone Number",
+      "region": "Region",
+      "city": "City",
+      "branch": "Postal Branch"
+    },
+    "totalQuantity": "Total Quantity: ",
+    "totalPrice": "Total Price: "
+  },
+  "toastify": {
+    "paymentProcess": "Process your payment with:",
+    "paymentAuthMessage": "You must be authorized to process the payment!",
+    "please": ["Please", "log in", "to process the payment!"],
+    "logoutSuccess": "Log out successful!",
+    "paymentSuccess": "Payment successful!",
+    "addToCartSuccess": "The doll was added to your cart!",
+    "loginFailure": "Incorrect Login or password!",
+    "loginSuccess": "Wellcome, ",
+    "imageUploadError": "Error uploading image!",
+    "orderDetailsError": "Error getting order details!",
+    "registrationFailure": "Couldn`t sign up!",
+    "registrationSuccess": "Wellcome, "
+  }
+}

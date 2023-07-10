@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOrderHistory } from "../../redux/slices/order";
 import { Link } from "react-router-dom";
 import "../../scss/pages/orderHistory.scss";
+import { useTranslation } from "react-i18next";
 
 export const OrderHistory = () => {
+  const [t, i18n] = useTranslation("global");
+
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
   const order = useSelector((state) => state.order.data);
@@ -18,17 +21,19 @@ export const OrderHistory = () => {
   return (
     <div className="content">
       <div className="section_header">
-        <h3>Order History</h3>
+        <h3>{t("orderHistoryPage.title")}</h3>
       </div>
       {order && Array.isArray(order) && order.length > 0 ? (
         <div className="history-page">
-          <h4>You have {order?.length} ordered</h4>
+          <h4>
+            {t("orderHistoryPage.orders")} {`(${order?.length})`}
+          </h4>
 
           <table>
             <thead>
               <tr>
-                <th>Order ID</th>
-                <th>Date of Purchased</th>
+                <th>{t("orderHistoryPage.orderID")}</th>
+                <th>{t("orderHistoryPage.purchaseDate")}</th>
                 <th></th>
               </tr>
             </thead>
@@ -38,7 +43,9 @@ export const OrderHistory = () => {
                   <td>{items._id}</td>
                   <td>{new Date(items.createdAt).toLocaleDateString()}</td>
                   <td>
-                    <Link to={`/order/${items._id}`}>View</Link>
+                    <Link to={`/order/${items._id}`}>
+                      {t("orderHistoryPage.viewBtn")}
+                    </Link>
                   </td>
                 </tr>
               ))}
@@ -47,7 +54,7 @@ export const OrderHistory = () => {
         </div>
       ) : (
         <div className="no-orders-msg">
-          <p>No order history available.</p>
+          <p>{t("orderHistoryPage.noOrderAvaiable")}</p>
         </div>
       )}
     </div>

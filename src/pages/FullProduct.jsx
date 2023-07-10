@@ -7,8 +7,11 @@ import { useParams } from "react-router-dom";
 import axios from "../axios";
 import { fetchComments } from "../redux/slices/comments";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export const FullProduct = () => {
+  const [t, i18n] = useTranslation("global");
+
   const [data, setData] = React.useState();
   const { comments } = useSelector((state) => state.comments);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -17,7 +20,7 @@ export const FullProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const onClickAdd = () => {
-    toast.success("The doll was added to your cart!", {
+    toast.success(t("toastify.addToCartSuccess"), {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: true,
@@ -88,8 +91,8 @@ export const FullProduct = () => {
               <h2 className="product-title">{data.dollName}</h2>
               <div className="product-image">
                 <img
-                  src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
-                  // src={`http://localhost:4444/${data.imageUrl}`}
+                  // src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
+                  src={`http://localhost:4444/${data.imageUrl}`}
                   alt={data.dollName}
                 />
               </div>
@@ -97,7 +100,7 @@ export const FullProduct = () => {
               <p className="product-description">{data.description}</p>
               <p>
                 <button onClick={onClickAdd} className="product-button">
-                  Add to Cart
+                  {t("productCard.addToCartBtn")}
                 </button>
               </p>
             </div>
@@ -106,8 +109,8 @@ export const FullProduct = () => {
           <div className="product">
             <div className="product-image">
               <img
-                src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
-                // src={`http://localhost:4444/${data.imageUrl}`}
+                // src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
+                src={`http://localhost:4444/${data.imageUrl}`}
                 alt={data.dollName}
               />
             </div>
@@ -117,7 +120,7 @@ export const FullProduct = () => {
               <p className="product-description">{data.description}</p>
               <p>
                 <button onClick={onClickAdd} className="product-button">
-                  Add to Cart
+                  {t("productCard.addToCartBtn")}
                 </button>
               </p>
             </div>
@@ -125,7 +128,7 @@ export const FullProduct = () => {
         )}
 
         <div className="comments_header">
-          <h3>Comments</h3>
+          <h3>{t("fullProductComments.title")}</h3>
         </div>
         <Index />
         <CommentsBlock items={comments.items} isLoading={false} />

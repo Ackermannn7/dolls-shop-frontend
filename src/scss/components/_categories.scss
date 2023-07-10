@@ -1,10 +1,45 @@
 @import "../variables";
 
 .categories {
+  display: flex;
+  select,
+  option {
+    text-align: center;
+
+    border: none;
+    background-color: #ddd;
+    padding: 13px 18px;
+    border-radius: 30px;
+    margin-right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+    @include noselect();
+
+    &:hover {
+      background-color: darken(#aaa, 2%);
+    }
+
+    &:active {
+      background-color: darken(#aaa, 5%);
+    }
+
+    &.active {
+      background-color: #282828;
+      color: #fff;
+    }
+    @media (max-width: 768px) {
+      font-size: 12px;
+      margin-bottom: 10px;
+      padding: 10px 13px;
+    }
+  }
   ul {
     display: flex;
 
     li {
+      justify-content: space-around;
+      align-items: center;
       background-color: #ddd;
       padding: 13px 18px;
       border-radius: 30px;
@@ -31,5 +66,16 @@
   @media (max-width: 600px) {
     font-size: 12px;
     margin-bottom: 10px;
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-left: 3px;
+    // margin-top: 5px;
+  }
+  .languageBtn {
+    position: relative;
+    align-items: center;
+    display: flex;
   }
 }

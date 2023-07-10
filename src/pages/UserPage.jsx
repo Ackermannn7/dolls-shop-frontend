@@ -2,9 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export const UserPage = () => {
   const userData = useSelector((state) => state.auth.data);
+  const [t, i18n] = useTranslation("global");
 
   return (
     <div className="content">
@@ -42,12 +44,12 @@ export const UserPage = () => {
             <div className="profile-buttons">
               <p>
                 <Link to="/edit" className="change-button">
-                  Change Profile
+                  {t("profilePage.changeBtn")}
                 </Link>
               </p>
               <p>
                 <Link to="/orderHistory" className="change-button">
-                  Order History
+                  {t("profilePage.orderBtn")}
                 </Link>
               </p>
             </div>

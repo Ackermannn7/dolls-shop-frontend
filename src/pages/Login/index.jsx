@@ -11,8 +11,11 @@ import { toast } from "react-toastify";
 
 import styles from "./Login.module.scss";
 import { fetchLogin, selectIsAuth } from "../../redux/slices/authorization";
+import { useTranslation } from "react-i18next";
 
 export const Login = () => {
+  const [t, i18n] = useTranslation("global");
+
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   const {
@@ -24,12 +27,13 @@ export const Login = () => {
   });
   const onSubmit = async (values) => {
     const data = await dispatch(fetchLogin(values));
+    console.log(data.payload);
     if (!data.payload) {
-      return toast.error("Incorrect Login or password!", {
+      return toast.error(t("toastify.loginFailure"), {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: true,
-        closeOnClick: false,
+        closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
         progress: undefined,
@@ -38,11 +42,11 @@ export const Login = () => {
     }
     if ("token" in data.payload) {
       window.localStorage.setItem("token", data.payload.token);
-      toast.success(`Wellcome, ${data.payload.fullName}!`, {
+      toast.success(`${t("toastify.loginSuccess")} ${data.payload.fullName}!`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: true,
-        closeOnClick: false,
+        closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
         progress: undefined,
@@ -57,25 +61,27 @@ export const Login = () => {
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
-        Log in into your Account
+        {t("loginForm.title")}
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           className={styles.field}
-          label="E-Mail"
+          label={t("loginForm.emailLabel")}
           error={Boolean(errors.email?.message)}
           helperText={errors.email?.message}
           type="email"
-          {...register("email", { required: "Enter your email" })}
+          {...register("email", { required: t("loginForm.emailMessage") })}
           fullWidth
         />
         <TextField
           className={styles.field}
-          label="Password"
+          label={t("loginForm.passwordLabel")}
           type="password"
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
-          {...register("password", { required: "Enter your password" })}
+          {...register("password", {
+            required: t("loginForm.passwordMessage"),
+          })}
           fullWidth
         />
         <Button
@@ -85,13 +91,13 @@ export const Login = () => {
           variant="contained"
           fullWidth
         >
-          Log in
+          {t("loginForm.loginBtn")}
         </Button>
       </form>
       <div className={styles.bottomText}>
-        <p>Don't have an account?</p>
+        <p>{t("loginForm.registerText")}</p>
         <Link to="/register">
-          <p className={styles.bottomLink}>Sign up</p>
+          <p className={styles.bottomLink}>{t("loginForm.registerLink")}</p>
         </Link>
       </div>
     </Paper>

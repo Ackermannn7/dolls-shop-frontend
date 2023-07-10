@@ -8,8 +8,11 @@ import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createComment } from "../../redux/slices/comments";
+import { useTranslation } from "react-i18next";
 
 export const Index = () => {
+  const [t, i18n] = useTranslation("global");
+
   const userData = useSelector((state) => state.auth.data);
   const { id } = useParams();
   const [comment, setComment] = React.useState("");
@@ -37,14 +40,14 @@ export const Index = () => {
         <TextField
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          label="Write a Comment"
+          label={t("fullProductComments.inputLabel")}
           variant="outlined"
           maxRows={10}
           multiline
           fullWidth
         />
         <Button onClick={onSubmit} variant="contained">
-          Send
+          {t("fullProductComments.sendCommentBtn")}
         </Button>
       </div>
     </div>

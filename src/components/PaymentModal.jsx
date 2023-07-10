@@ -12,6 +12,7 @@ import { clearCart } from "../redux/slices/cart";
 import { saveOrder } from "../redux/slices/order";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 const modalStyle = {
   textalign: "center",
@@ -27,6 +28,8 @@ const modalStyle = {
 };
 
 export default function PaymentModal({ open, setOpen, formData }) {
+  const [t, i18n] = useTranslation("global");
+
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const userData = useSelector((state) => state.auth.data);
@@ -45,7 +48,7 @@ export default function PaymentModal({ open, setOpen, formData }) {
       dispatch(saveOrder({ userData, items, totalPrice, formData }));
       dispatch(clearCart()); // Clear the cart state
       window.localStorage.removeItem("cart");
-      toast.success("Payment successful!", {
+      toast.success(t("toastify.paymentSuccess"), {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -71,7 +74,7 @@ export default function PaymentModal({ open, setOpen, formData }) {
         disabled={!isFormValid}
         onClick={handleOpen}
       >
-        Pay Now
+        {t("cartPage.cart.payBtn")}
       </button>
 
       {isAuth ? (
@@ -96,7 +99,7 @@ export default function PaymentModal({ open, setOpen, formData }) {
                 variant="h6"
                 component="h2"
               >
-                Process your payment with:
+                {t("toastify.paymentProcess")}
               </Typography>
               <PayPalScriptProvider
                 options={{
@@ -143,17 +146,17 @@ export default function PaymentModal({ open, setOpen, formData }) {
                 variant="h5"
                 component="h2"
               >
-                You must be authorized to process the payment!
+                {t("toastify.paymentAuthMessage")}
               </Typography>
               <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                Please{" "}
+                {t("toastify.please.0")}{" "}
                 <Link
                   style={{ color: "blue", textDecoration: "underline" }}
                   to="/login"
                 >
-                  log in
+                  {t("toastify.please.1")}
                 </Link>{" "}
-                to process the payment!
+                {t("toastify.please.2")}
               </Typography>
             </Box>
           </Fade>

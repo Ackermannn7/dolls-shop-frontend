@@ -2,18 +2,21 @@ import React from "react";
 import styles from "./Product.module.scss";
 import Skeleton from "./Skeleton";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/slices/cart";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export const Product = (props) => {
+  const [t, i18n] = useTranslation("global");
+
   const dispatch = useDispatch();
   const onClickAdd = () => {
-    toast.success("The doll was added to your cart!", {
+    toast.success(t("toastify.addToCartSuccess"), {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: true,
-      closeOnClick: false,
+      closeOnClick: true,
       pauseOnHover: false,
       draggable: false,
       progress: undefined,
@@ -37,8 +40,8 @@ export const Product = (props) => {
       <Link to={`/dolls/${props._id}`}>
         <img
           className={styles.productImg}
-          src={`${process.env.REACT_APP_API_URL}${props.imageUrl}`}
-          // src={`http://localhost:4444/${props.imageUrl}`}
+          // src={`${process.env.REACT_APP_API_URL}${props.imageUrl}`}
+          src={`http://localhost:4444/${props.imageUrl}`}
           alt={props.dollName}
         />
         <h2 className={styles.name}>{props.dollName}</h2>
@@ -47,7 +50,7 @@ export const Product = (props) => {
           <p>
             {props.description.substr(0, 190)}
             {"..."}
-            <span className={styles.readmore}>read more...</span>
+            <span className={styles.readmore}>{t("productCard.readMore")}</span>
           </p>
         ) : (
           <p>{props.description}</p>
@@ -56,7 +59,7 @@ export const Product = (props) => {
 
       <p>
         <button onClick={onClickAdd} className={styles.button}>
-          Add to Cart
+          {t("productCard.addToCartBtn")}
         </button>
       </p>
     </div>

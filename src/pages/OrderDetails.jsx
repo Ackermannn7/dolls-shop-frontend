@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../axios";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 // import MapContainer from "../components/MapContainer";
 
 export const OrderDetails = () => {
+  const [t, i18n] = useTranslation("global");
+
   const [deviceType, setDeviceType] = React.useState("");
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +25,16 @@ export const OrderDetails = () => {
       .catch((err) => {
         console.warn(err);
         alert("Error getting order details!");
+        toast.error(t("toastify.orderDetailsError"), {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
       });
     const getDeviceType = () => {
       const { userAgent } = navigator;
@@ -56,15 +70,15 @@ export const OrderDetails = () => {
   return (
     <div className="content history-page">
       <div className="section_header">
-        <h3>Order Details</h3>
+        <h3>{t("orderHistoryPage.orderDetails.title")}</h3>
       </div>
       <table className="order-details">
         <thead>
           <tr>
             <th></th>
-            <th>Doll</th>
-            <th>Quantity</th>
-            <th>Price $</th>
+            <th>{t("orderHistoryPage.orderDetails.dollName")}</th>
+            <th>{t("orderHistoryPage.orderDetails.quantity")}</th>
+            <th>{t("orderHistoryPage.orderDetails.price")}</th>
           </tr>
         </thead>
         <tbody>
@@ -72,8 +86,8 @@ export const OrderDetails = () => {
             <tr key={item._id}>
               <td>
                 <img
-                  src={`${process.env.REACT_APP_API_URL}${item.doll.imageUrl}`}
-                  // src={`http://localhost:4444/${item.doll.imageUrl}`}
+                  // src={`${process.env.REACT_APP_API_URL}${item.doll.imageUrl}`}
+                  src={`http://localhost:4444/${item.doll.imageUrl}`}
                   alt={item.doll.dollName}
                 />
               </td>
@@ -85,38 +99,42 @@ export const OrderDetails = () => {
         </tbody>
       </table>
       <div className="section_header">
-        <h3>Delivery Details</h3>
+        <h3>{t("orderHistoryPage.deliveryDetails.title")}</h3>
       </div>
       {deviceType === "mobile" ? (
         <table className="delivery-details">
           <tbody>
             <tr>
               <td>
-                <strong>Customer:</strong>
+                <strong>
+                  {t("orderHistoryPage.deliveryDetails.customer")}
+                </strong>
               </td>
               <td>{data?.formData.orderFullName}</td>
             </tr>
             <tr>
               <td>
-                <strong>Phone Number:</strong>
+                <strong>
+                  {t("orderHistoryPage.deliveryDetails.phoneNumber")}
+                </strong>
               </td>
               <td>{data?.formData.orderPhoneNumber}</td>
             </tr>
             <tr>
               <td>
-                <strong>Region:</strong>
+                <strong>{t("orderHistoryPage.deliveryDetails.region")}</strong>
               </td>
               <td>{data?.formData.selectedRegion}</td>
             </tr>
             <tr>
               <td>
-                <strong>City:</strong>
+                <strong>{t("orderHistoryPage.deliveryDetails.city")}</strong>
               </td>
               <td>{data?.formData.selectedCity}</td>
             </tr>
             <tr>
               <td>
-                <strong>Postal Branch:</strong>
+                <strong>{t("orderHistoryPage.deliveryDetails.branch")}</strong>
               </td>
               <td>{data?.formData.selectedBranch}</td>
             </tr>
@@ -127,11 +145,11 @@ export const OrderDetails = () => {
           <thead>
             <tr>
               {/* <th>Map Location</th> */}
-              <th>Customer</th>
-              <th>Phone Number</th>
-              <th>Region</th>
-              <th>City</th>
-              <th>Postal Branch</th>
+              <th>{t("orderHistoryPage.deliveryDetails.customer")}</th>
+              <th>{t("orderHistoryPage.deliveryDetails.phoneNumber")}</th>
+              <th>{t("orderHistoryPage.deliveryDetails.region")}</th>
+              <th>{t("orderHistoryPage.deliveryDetails.city")}</th>
+              <th>{t("orderHistoryPage.deliveryDetails.branch")}</th>
             </tr>
           </thead>
           <tbody>
@@ -156,11 +174,11 @@ export const OrderDetails = () => {
       <div className="bottom-details">
         <span>
           {" "}
-          Total quantity: <b>{totalQuantity}</b>{" "}
+          {t("orderHistoryPage.totalQuantity")} <b>{totalQuantity}</b>{" "}
         </span>
         <span>
           {" "}
-          Total Price: <b>{totalPrice.toFixed(2)}$</b>{" "}
+          {t("orderHistoryPage.totalPrice")} <b>{totalPrice.toFixed(2)}$</b>{" "}
         </span>
       </div>
     </div>

@@ -5,8 +5,11 @@ import { responsive } from "../assets/data/carousel";
 import { Product } from "../components/Product";
 import axios from "../axios";
 import { WhyUs } from "../components/WhyUs";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const [t, i18n] = useTranslation("global");
+
   const [data, setData] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
   const [deviceType, setDeviceType] = React.useState("");
@@ -69,7 +72,7 @@ const Home = () => {
       <div className="recommended">
         <div className="recommended__header">
           <div className="section_header">
-            <h3>Recommended Dolls</h3>
+            <h3>{t("homepage.recommendedTitle")}</h3>
           </div>
         </div>
         <Carousel

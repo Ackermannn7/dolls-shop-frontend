@@ -6,8 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectIsAuth } from "../redux/slices/authorization";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 export const Header = () => {
+  const [t, i18n] = useTranslation("global");
+  const handleChangeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
+
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
@@ -15,48 +21,164 @@ export const Header = () => {
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
   const navigate = useNavigate();
   const onClickLogout = () => {
-    if (window.confirm("Are you sure you want to log out?")) {
+    if (window.confirm(t("header.logoutMessage"))) {
       dispatch(logout());
       navigate("/");
       window.localStorage.removeItem("token");
       window.localStorage.removeItem("cart");
-      toast.success("Log out successful!", {
+      toast.success(t("toastify.logoutSuccess"), {
         position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
         draggable: false,
         progress: undefined,
         theme: "light",
       });
     }
   };
-
-  // const categories = ["Dolls", "Gallery", "About us", "Language"];
   return (
     <div className="header">
       <Link to="/">
         <div className="header__logo">
           <img width="60" src={logo} alt="Pizza logo" />
           <div className="header__logo__description">
-            <h1>DOLLS FOR ALL</h1>
-            <p>Dolls for your house and soul</p>
+            <h1>{t("header.title")}</h1>
+            <p>{t("header.description")}</p>
           </div>
         </div>
       </Link>
       <div className="categories">
         <ul>
           <Link to="/dolls">
-            <li>Dolls</li>
+            <li>{t("header.categories.0")}</li>
           </Link>
           <Link to="/gallery">
-            <li>Gallery</li>
+            <li>{t("header.categories.1")}</li>
           </Link>
           <Link to="/aboutus">
-            <li>About us</li>
+            <li>{t("header.categories.2")}</li>
           </Link>
-          <li>Language</li>
+          {i18n.language === "en" ? (
+            <li onClick={() => handleChangeLanguage("ua")}>
+              <div className="languageBtn">
+                <span>{t("header.categories.3")}</span>{" "}
+                <svg
+                  className="flag"
+                  width="20px"
+                  height="20px"
+                  viewBox="0 -4 28 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_503_2952)">
+                    <rect width="28" height="20" rx="2" fill="white" />
+                    <mask
+                      id="mask0_503_2952"
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="28"
+                      height="20"
+                    >
+                      <rect width="28" height="20" rx="2" fill="white" />
+                    </mask>
+                    <g mask="url(#mask0_503_2952)">
+                      <rect width="28" height="20" fill="#0A17A7" />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M-1.28244 -1.91644L10.6667 6.14335V-1.33333H17.3334V6.14335L29.2825 -1.91644L30.7737 0.294324L21.3263 6.66667H28V13.3333H21.3263L30.7737 19.7057L29.2825 21.9165L17.3334 13.8567V21.3333H10.6667V13.8567L-1.28244 21.9165L-2.77362 19.7057L6.67377 13.3333H2.95639e-05V6.66667H6.67377L-2.77362 0.294324L-1.28244 -1.91644Z"
+                        fill="white"
+                      />
+                      <path
+                        d="M18.668 6.33219L31.3333 -2"
+                        stroke="#DB1F35"
+                        stroke-width="0.666667"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M20.0128 13.6975L31.3666 21.3503"
+                        stroke="#DB1F35"
+                        stroke-width="0.666667"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M8.00555 6.31046L-3.83746 -1.67099"
+                        stroke="#DB1F35"
+                        stroke-width="0.666667"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M9.29006 13.6049L-3.83746 22.3105"
+                        stroke="#DB1F35"
+                        stroke-width="0.666667"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M0 12H12V20H16V12H28V8H16V0H12V8H0V12Z"
+                        fill="#E6273E"
+                      />
+                    </g>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_503_2952">
+                      <rect width="28" height="20" rx="2" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </li>
+          ) : (
+            <li onClick={() => handleChangeLanguage("en")}>
+              <div className="languageBtn">
+                <span>{t("header.categories.3")}</span>{" "}
+                <svg
+                  width="20px"
+                  height="20px"
+                  viewBox="0 -4 28 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_503_2809)">
+                    <rect width="28" height="20" rx="2" fill="white" />
+                    <mask
+                      id="mask0_503_2809"
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="28"
+                      height="20"
+                    >
+                      <rect width="28" height="20" rx="2" fill="white" />
+                    </mask>
+                    <g mask="url(#mask0_503_2809)">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M0 10.6667H28V0H0V10.6667Z"
+                        fill="#156DD1"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M0 20H28V10.6667H0V20Z"
+                        fill="#FFD948"
+                      />
+                    </g>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_503_2809">
+                      <rect width="28" height="20" rx="2" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </li>
+          )}
         </ul>
       </div>
       <div className="header__right-block">
@@ -120,7 +242,7 @@ export const Header = () => {
                 },
               }}
             >
-              Log Out
+              {t("header.logoutbtn")}
             </Button>
           </div>
         ) : (

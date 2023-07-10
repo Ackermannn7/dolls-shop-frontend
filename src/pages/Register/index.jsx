@@ -14,8 +14,11 @@ import DeleteIcon from "@mui/icons-material/Clear";
 import IconButton from "@mui/material/IconButton";
 import styles from "./Register.module.scss";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export const Register = () => {
+  const [t, i18n] = useTranslation("global");
+
   const [imageUrl, setImageUrl] = React.useState("");
   const inputFileRef = React.useRef(null);
 
@@ -28,7 +31,16 @@ export const Register = () => {
       setImageUrl(data.url);
     } catch (err) {
       console.warn(err);
-      alert("Error uploading image!");
+      toast.error(t("toastify.imageUploadError"), {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -57,14 +69,14 @@ export const Register = () => {
     const data = await dispatch(
       fetchRegister({
         ...values,
-        avatarUrl: `${process.env.REACT_APP_API_URL}${imageUrl}`,
-        // avatarUrl: `http://localhost:4444/${imageUrl}`,
+        // avatarUrl: `${process.env.REACT_APP_API_URL}${imageUrl}`,
+        avatarUrl: `http://localhost:4444/${imageUrl}`,
       })
     );
     if (!data.payload) {
-      return toast.error("Couldn`t sign up!", {
+      return toast.error(t("loginForm.registrationFailure"), {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: true,
         closeOnClick: false,
         pauseOnHover: false,
@@ -75,16 +87,19 @@ export const Register = () => {
     }
     if ("token" in data.payload) {
       window.localStorage.setItem("token", data.payload.token);
-      toast.success(`Wellcome, ${data.payload.fullName}!`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.success(
+        `${t("toastify.registrationSuccess")}, ${data.payload.fullName}!`,
+        {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        }
+      );
     }
   };
 
@@ -94,15 +109,15 @@ export const Register = () => {
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
-        Registration
+        {t("registerForm.title")}
       </Typography>
       <div className={styles.avatar}>
         {imageUrl ? (
           <>
             <img
               className={styles.uploadedAvatar}
-              src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
-              // src={`http://localhost:4444/${imageUrl}`}
+              // src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
+              src={`http://localhost:4444/${imageUrl}`}
               alt="avatar"
             />
             <div className={styles.editButtons}>
@@ -132,27 +147,31 @@ export const Register = () => {
         <TextField
           error={Boolean(errors.fullName?.message)}
           helperText={errors.fullName?.message}
-          {...register("fullName", { required: "Enter your full name" })}
+          {...register("fullName", {
+            required: t("registerForm.nameMessage"),
+          })}
           className={styles.field}
-          label="Full Name"
+          label={t("registerForm.nameMessage")}
           fullWidth
         />
         <TextField
           error={Boolean(errors.email?.message)}
           helperText={errors.email?.message}
           type="email"
-          {...register("email", { required: "Enter your email" })}
+          {...register("email", { required: t("registerForm.emailMessage") })}
           className={styles.field}
-          label="E-Mail"
+          label={t("registerForm.emailLabel")}
           fullWidth
         />
         <TextField
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
           type="password"
-          {...register("password", { required: "Enter your password" })}
+          {...register("password", {
+            required: t("registerForm.passwordMessage"),
+          })}
           className={styles.field}
-          label="Password"
+          label={t("registerForm.passwordLabel")}
           fullWidth
         />
         {/* <TextField
@@ -172,13 +191,13 @@ export const Register = () => {
           variant="contained"
           fullWidth
         >
-          Sign Up
+          {t("registerForm.registerBtn")}
         </Button>
       </form>
       <div className={styles.bottomText}>
-        <p>Already have an account?</p>
+        <p>{t("registerForm.loginText")}</p>
         <Link to="/login">
-          <p className={styles.bottomLink}>Log in</p>
+          <p className={styles.bottomLink}>{t("registerForm.loginLink")}</p>
         </Link>
       </div>
     </Paper>

@@ -1,8 +1,10 @@
 import React from "react";
 // import debounce from "lodash.debounce";
 import styles from "./Search.module.scss";
+import { useTranslation } from "react-i18next";
 
 export const Search = ({ setSearchValue }) => {
+  const [t, i18n] = useTranslation("global");
   // const onCLickClear = () => {
   //   setSearchValue("");
   // };
@@ -25,7 +27,7 @@ export const Search = ({ setSearchValue }) => {
       <input
         onChange={({ currentTarget: input }) => setSearchValue(input.value)}
         className={styles.input}
-        placeholder="Search for Doll ..."
+        placeholder={t("dollsList.searchLabel")}
       />
       {/* {searchValue && (
         <svg

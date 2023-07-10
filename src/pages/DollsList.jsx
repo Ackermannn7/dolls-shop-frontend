@@ -5,8 +5,11 @@ import { fetchProducts } from "../redux/slices/dolls";
 import { Search } from "../components/Search";
 import { Pagination } from "../components/Pagination";
 import { Sort } from "../components/Sort";
+import { useTranslation } from "react-i18next";
 
 export const DollsList = () => {
+  const [t, i18n] = useTranslation("global");
+
   const dispatch = useDispatch();
 
   const { dolls } = useSelector((state) => state.dolls);
@@ -23,7 +26,7 @@ export const DollsList = () => {
     <div className="content">
       <div className="dollsList__header">
         <div className="section_header">
-          <h3>Dolls</h3>
+          <h3>{t("dollsList.title")}</h3>
         </div>
         <div className="section_right">
           <Search
