@@ -28,9 +28,9 @@ $pagination-hover-text-color: #f6f6f6;
     }
   }
 
-  &.active {
-    a {
-      font-weight: bold;
-    }
+  .active {
+    background-color: $pagination-hover-bg;
+    color: $pagination-hover-text-color;
+    font-weight: bold;
   }
 }

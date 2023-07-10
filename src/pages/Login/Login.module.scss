@@ -22,6 +22,8 @@
 .bottomText {
   @media (max-width: 768px) {
     font-size: 0.9em;
+    flex-direction: column;
+    text-align: center;
   }
   font-size: 1.1em;
   font-weight: 500;
@@ -31,6 +33,8 @@
 }
 
 .bottomLink {
-  width: 70px;
+  @media (max-width: 768px) {
+    text-align: center;
+  }
   color: rgb(25, 25, 238);
 }

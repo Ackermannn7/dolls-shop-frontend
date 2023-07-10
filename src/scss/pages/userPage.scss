@@ -24,7 +24,6 @@
   @media (max-width: 768px) {
     font-size: 1.2em;
   }
-  padding-left: 20px;
 }
 
 .user-fullName {
@@ -47,8 +46,7 @@
 }
 .profile-buttons {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .change-button {
   @media (max-width: 768px) {
@@ -58,6 +56,8 @@
     margin: 0 10px;
     padding: 10px 10px;
   }
+  margin: 0 20px;
+
   border-radius: 10px;
   font-weight: bold;
   border: none;

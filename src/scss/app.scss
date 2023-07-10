@@ -99,3 +99,16 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.scroll-to-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  background-color: #272727;
+  color: #f6f6f6;
+  border-radius: 50%;
+  align-items: center;
+  z-index: 10;
+  text-align: center;
+}

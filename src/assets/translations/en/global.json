@@ -47,7 +47,9 @@
   "fullProductComments": {
     "title": "Comments",
     "inputLabel": "Write a Comment ...",
-    "sendCommentBtn": "SEND"
+    "sendCommentBtn": "SEND",
+    "addCommentFailure": "Error adding comment!",
+    "isAuth": "You must be authorized to leave a comment!"
   },
   "aboutUs": {
     "title": "About Us",

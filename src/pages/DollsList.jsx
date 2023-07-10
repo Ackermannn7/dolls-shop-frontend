@@ -47,6 +47,7 @@ export const DollsList = () => {
         )}
       </div>
       <Pagination
+        className="active"
         page={page}
         limit={dolls.items.limit ? dolls.items.limit : 0}
         total={dolls.items.total ? dolls.items.total : 0}

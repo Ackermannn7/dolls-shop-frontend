@@ -9,23 +9,48 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createComment } from "../../redux/slices/comments";
 import { useTranslation } from "react-i18next";
+import { selectIsAuth } from "../../redux/slices/authorization";
+import { toast } from "react-toastify";
 
 export const Index = () => {
   const [t, i18n] = useTranslation("global");
-
+  const isAuth = useSelector(selectIsAuth);
+  console.log(isAuth);
   const userData = useSelector((state) => state.auth.data);
   const { id } = useParams();
   const [comment, setComment] = React.useState("");
   const dispatch = useDispatch();
 
   const onSubmit = async () => {
-    try {
-      const dollId = id;
-      dispatch(createComment({ dollId, comment, userData }));
-      setComment("");
-    } catch (err) {
-      console.warn(err);
-      alert("Error adding a comment!");
+    if (!isAuth) {
+      toast.error(t("fullProductComments.isAuth"), {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      try {
+        const dollId = id;
+        dispatch(createComment({ dollId, comment, userData }));
+        setComment("");
+      } catch (err) {
+        console.warn(err);
+        toast.error(t("fullProductComments.addCommentFailure"), {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
+      }
     }
   };
 
@@ -46,6 +71,7 @@ export const Index = () => {
           multiline
           fullWidth
         />
+
         <Button onClick={onSubmit} variant="contained">
           {t("fullProductComments.sendCommentBtn")}
         </Button>

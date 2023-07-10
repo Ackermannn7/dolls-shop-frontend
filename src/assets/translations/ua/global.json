@@ -47,7 +47,9 @@
   "fullProductComments": {
     "title": "Коментарі",
     "inputLabel": "Написати коментар ...",
-    "sendCommentBtn": "Відправити"
+    "sendCommentBtn": "Відправити",
+    "addCommentFailure": "Невдалося залишити коментар!",
+    "isAuth": "Ви повинні бути авторизовані щоб залишити коментар!"
   },
   "aboutUs": {
     "title": "Про Нас",

@@ -6,7 +6,6 @@ import { Product } from "../components/Product";
 import axios from "../axios";
 import { WhyUs } from "../components/WhyUs";
 import { useTranslation } from "react-i18next";
-
 const Home = () => {
   const [t, i18n] = useTranslation("global");
 

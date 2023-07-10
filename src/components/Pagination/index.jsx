@@ -5,6 +5,7 @@ export const Pagination = ({ page, total, limit, setPage }) => {
   const onClick = (newPage) => {
     setPage(newPage + 1);
   };
+  console.log(`${styles.page_btn} ${styles.active}`);
   return (
     <div className={styles.pagination}>
       {totalPages > 0 &&
