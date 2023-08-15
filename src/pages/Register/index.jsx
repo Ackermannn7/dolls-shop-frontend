@@ -19,16 +19,29 @@ import { useTranslation } from "react-i18next";
 export const Register = () => {
   const [t, i18n] = useTranslation("global");
 
-  const [imageUrl, setImageUrl] = React.useState("");
   const inputFileRef = React.useRef(null);
-
-  const handleChangeFile = async (event) => {
+  const [fileName, setFileName] = React.useState();
+  const [selectedImage, setSelectedImage] = React.useState("");
+  const passwordValidation = (value) => {
+    if (value && value.length < 8) {
+      return t("registerForm.passwordLength");
+    }
+    return true;
+  };
+  const handleImageChange = (event) => {
     try {
-      const formData = new FormData();
       const file = event.target.files[0];
-      formData.append("image", file);
-      const { data } = await axios.post("/upload", formData);
-      setImageUrl(data.url);
+      if (file) {
+        setFileName(file);
+
+        const reader = new FileReader();
+
+        reader.addEventListener("load", () => {
+          setSelectedImage(reader.result);
+        });
+
+        reader.readAsDataURL(file);
+      }
     } catch (err) {
       console.warn(err);
       toast.error(t("toastify.imageUploadError"), {
@@ -45,7 +58,11 @@ export const Register = () => {
   };
 
   const onClickRemoveImage = () => {
-    setImageUrl("");
+    setSelectedImage("");
+    setFileName("");
+    if (inputFileRef.current) {
+      inputFileRef.current.value = "";
+    }
   };
 
   const isAuth = useSelector(selectIsAuth);
@@ -66,15 +83,27 @@ export const Register = () => {
   });
 
   const onSubmit = async (values) => {
-    const data = await dispatch(
+    let data = {};
+    if (fileName) {
+      const formData = new FormData();
+      formData.append("image", fileName);
+      data = await axios.post("/upload", formData);
+    }
+    const userData = await dispatch(
       fetchRegister({
         ...values,
-        avatarUrl: `${process.env.REACT_APP_API_URL}${imageUrl}`,
-        // avatarUrl: `http://localhost:4444/${imageUrl}`,
+        avatarUrl: `${process.env.REACT_APP_API_URL}${data.url}`,
+        // avatarUrl: fileName && `http://localhost:4444/${data.url}`,
       })
     );
-    if (!data.payload) {
-      return toast.error(t("loginForm.registrationFailure"), {
+
+    if (inputFileRef.current) {
+      setSelectedImage("");
+      setFileName("");
+      inputFileRef.current.value = "";
+    }
+    if (!userData.payload) {
+      return toast.error(t("toastify.emailExists"), {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: true,
@@ -85,10 +114,10 @@ export const Register = () => {
         theme: "light",
       });
     }
-    if ("token" in data.payload) {
-      window.localStorage.setItem("token", data.payload.token);
+    if ("token" in userData.payload) {
+      window.localStorage.setItem("token", userData.payload.token);
       toast.success(
-        `${t("toastify.registrationSuccess")}, ${data.payload.fullName}!`,
+        `${t("toastify.registrationSuccess")}, ${userData.payload.fullName}!`,
         {
           position: "top-right",
           autoClose: 3000,
@@ -112,17 +141,16 @@ export const Register = () => {
         {t("registerForm.title")}
       </Typography>
       <div className={styles.avatar}>
-        {imageUrl ? (
+        {selectedImage ? (
           <>
             <img
               className={styles.uploadedAvatar}
-              src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
-              // src={`http://localhost:4444/${imageUrl}`}
+              src={selectedImage}
               alt="avatar"
             />
             <div className={styles.editButtons}>
-              <IconButton>
-                <DeleteIcon onClick={onClickRemoveImage} />
+              <IconButton onClick={onClickRemoveImage}>
+                <DeleteIcon />
               </IconButton>
             </div>
           </>
@@ -130,8 +158,8 @@ export const Register = () => {
           <>
             <Avatar sx={{ width: 100, height: 100 }} />
             <div className={styles.editButtons}>
-              <IconButton>
-                <AddAPhotoIcon onClick={() => inputFileRef.current.click()} />
+              <IconButton onClick={() => inputFileRef.current.click()}>
+                <AddAPhotoIcon />
               </IconButton>
             </div>
           </>
@@ -139,9 +167,10 @@ export const Register = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
+          id="imageInput"
           ref={inputFileRef}
           type="file"
-          onChange={handleChangeFile}
+          onChange={handleImageChange}
           hidden
         />
         <TextField
@@ -169,6 +198,7 @@ export const Register = () => {
           type="password"
           {...register("password", {
             required: t("registerForm.passwordMessage"),
+            validate: passwordValidation,
           })}
           className={styles.field}
           label={t("registerForm.passwordLabel")}

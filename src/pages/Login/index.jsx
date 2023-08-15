@@ -15,7 +15,12 @@ import { useTranslation } from "react-i18next";
 
 export const Login = () => {
   const [t, i18n] = useTranslation("global");
-
+  const passwordValidation = (value) => {
+    if (value && value.length < 8) {
+      return t("registerForm.passwordLength");
+    }
+    return true;
+  };
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   const {
@@ -27,7 +32,7 @@ export const Login = () => {
   });
   const onSubmit = async (values) => {
     const data = await dispatch(fetchLogin(values));
-    console.log(data.payload);
+
     if (!data.payload) {
       return toast.error(t("toastify.loginFailure"), {
         position: "top-right",
@@ -70,18 +75,22 @@ export const Login = () => {
           error={Boolean(errors.email?.message)}
           helperText={errors.email?.message}
           type="email"
-          {...register("email", { required: t("loginForm.emailMessage") })}
+          {...register("email", {
+            required: t("loginForm.emailMessage"),
+            // pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+          })}
           fullWidth
         />
         <TextField
-          className={styles.field}
-          label={t("loginForm.passwordLabel")}
-          type="password"
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
+          type="password"
           {...register("password", {
             required: t("loginForm.passwordMessage"),
+            validate: passwordValidation,
           })}
+          className={styles.field}
+          label={t("registerForm.passwordLabel")}
           fullWidth
         />
         <Button

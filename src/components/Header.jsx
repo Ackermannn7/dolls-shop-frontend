@@ -3,7 +3,11 @@ import logo from "../assets/img/logo2.png";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, selectIsAuth } from "../redux/slices/authorization";
+import {
+  fetchLogout,
+  logout,
+  selectIsAuth,
+} from "../redux/slices/authorization";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
@@ -17,12 +21,14 @@ export const Header = () => {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
+  console.log(userData);
   const { items } = useSelector((state) => state.cart);
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
   const navigate = useNavigate();
-  const onClickLogout = () => {
+  const onClickLogout = async () => {
     if (window.confirm(t("header.logoutMessage"))) {
-      dispatch(logout());
+      // dispatch(logout());
+      await dispatch(fetchLogout(userData));
       navigate("/");
       window.localStorage.removeItem("token");
       window.localStorage.removeItem("cart");

@@ -107,6 +107,8 @@
     "emailMessage": "Enter your mail",
     "passwordLabel": "Password",
     "passwordMessage": "Enter your password",
+    "passwordLength": "Your password must be at least 8 characters!",
+
     "registerBtn": "SIGN UP",
     "loginText": "Already have an account?",
     "loginLink": "Log in"
@@ -140,6 +142,7 @@
     "totalPrice": "Total Price: "
   },
   "toastify": {
+    "emailExists": "Email already exists!",
     "paymentProcess": "Process your payment with:",
     "paymentAuthMessage": "You must be authorized to process the payment!",
     "please": ["Please", "log in", "to process the payment!"],
