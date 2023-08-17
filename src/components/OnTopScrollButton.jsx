@@ -1,6 +1,6 @@
 import React from "react";
 
-export const OnTopScrollButton = () => {
+const OnTopScrollButton = () => {
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => {
     if (window.scrollY > 500) {
@@ -48,3 +48,5 @@ export const OnTopScrollButton = () => {
     </div>
   );
 };
+
+export default OnTopScrollButton;
