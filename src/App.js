@@ -18,7 +18,7 @@ import { ToastContainer } from "react-toastify";
 import { OrderHistory } from "./pages/OrderHistory";
 import { OrderDetails } from "./pages/OrderDetails";
 import { addProduct } from "./redux/slices/cart";
-import OnTopScrollButton from "./components/OnTopScrollButton";
+import { OnTopScrollButton } from "./components/OnTopScrollButton";
 // import { EditProfile } from "./pages/EditProfile";
 function App() {
   const dispatch = useDispatch();
