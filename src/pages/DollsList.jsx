@@ -42,7 +42,7 @@ export const DollsList = () => {
             isProductLoading ? (
               <Product className="grid-item" key={index} isLoading={true} />
             ) : (
-              <Product className="grid-item" key={obj.id} {...obj} />
+              <Product className="grid-item" key={obj._id} {...obj} />
             )
         )}
       </div>

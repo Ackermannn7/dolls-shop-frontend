@@ -82,7 +82,7 @@ const Home = () => {
           swipeable={true}
           draggable={false}
           showDots={true}
-          ssr={true} // means to render carousel on server-side.
+          ssr={false} // means to render carousel on server-side.
           slidesToSlide={2}
           infinite={true}
           autoPlay={deviceType !== "desktop" ? true : false}
@@ -97,7 +97,7 @@ const Home = () => {
           itemClass="carousel-item-padding-40-px"
         >
           {data.map((obj, index) => (
-            <Product key={obj.id} {...obj} />
+            <Product key={obj._id} {...obj} />
           ))}
         </Carousel>
       </div>

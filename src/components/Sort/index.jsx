@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 export const Sort = ({ sort, setSort }) => {
   const [t, i18n] = useTranslation("global");
 
-  console.log(i18n.language);
   const onSelectChange = ({ currentTarget: input }) => {
     setSort({ sort: input.value, order: sort.order });
   };

@@ -42,7 +42,7 @@ function App() {
       if (expiresIn <= 0) {
         // Token has expired, remove it from local storage
         localStorage.removeItem("token");
-        localStorage.removeItem("tokenExpiration");
+        localStorage.removeItem("expirationDate");
       }
     }
   }, [dispatch]);

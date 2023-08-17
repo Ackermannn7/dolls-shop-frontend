@@ -21,6 +21,7 @@ export const Gallery = () => {
             (obj, index) =>
               isGalleryLoading ? (
                 <div
+                  key={index}
                   style={{
                     width: "400px",
                     height: "400px",
@@ -29,7 +30,7 @@ export const Gallery = () => {
                 />
               ) : (
                 <img
-                  key={index}
+                  key={obj._id}
                   alt=""
                   src={`${process.env.REACT_APP_API_URL}${obj.imageUrl}`}
                   // src={`http://localhost:4444/${obj.imageUrl}`}

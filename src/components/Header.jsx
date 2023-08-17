@@ -34,6 +34,7 @@ export const Header = () => {
       await dispatch(fetchLogout(userData));
       navigate("/");
       localStorage.removeItem("token");
+      localStorage.removeItem("expirationDate");
       localStorage.removeItem("cart");
       toast.success(t("toastify.logoutSuccess"), {
         position: "top-right",

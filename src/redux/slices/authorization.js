@@ -5,14 +5,12 @@ export const fetchLogin = createAsyncThunk(
   "auth/fetchLogin",
   async (params) => {
     const { data } = await axios.post("/auth/login", params);
-    console.log(data);
     return data;
   }
 );
 export const fetchLogout = createAsyncThunk(
   "auth/fetchLogout",
   async (params) => {
-    console.log(params);
     const { data } = await axios.get("/auth/logout", params);
     return data;
   }

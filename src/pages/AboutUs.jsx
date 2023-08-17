@@ -10,7 +10,7 @@ export const AboutUs = () => {
         <h3>{t("aboutUs.title")}</h3>
       </div>
 
-      <p className="aboutus__description">
+      <div className="aboutus__description">
         <ul>
           <li>{t("aboutUs.aboutUsDescription1")}</li>
           <li>{t("aboutUs.aboutUsDescription2")}</li>
@@ -21,7 +21,7 @@ export const AboutUs = () => {
           <li>{t("aboutUs.aboutUsDescription7")}</li>
           <li>{t("aboutUs.aboutUsDescription8")}</li>
         </ul>
-      </p>
+      </div>
     </div>
   );
 };

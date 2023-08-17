@@ -8,7 +8,6 @@ import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
 import { Typography } from "@mui/material";
 export const CommentsBlock = ({ items, isLoading = true }) => {
-  console.log(items);
   return (
     <div style={{ margin: "0px" }}>
       <List>

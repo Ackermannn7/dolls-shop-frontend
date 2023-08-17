@@ -15,7 +15,6 @@ import { toast } from "react-toastify";
 export const Index = () => {
   const [t, i18n] = useTranslation("global");
   const isAuth = useSelector(selectIsAuth);
-  console.log(isAuth);
   const userData = useSelector((state) => state.auth.data);
   const { id } = useParams();
   const [comment, setComment] = React.useState("");
