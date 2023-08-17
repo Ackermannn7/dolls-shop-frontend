@@ -13,8 +13,8 @@ const CartItemBlock = ({ id, dollName, price, count, imageUrl }) => {
     <div className="cart__item">
       <div className="cart__item-img">
         <img
-          src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
-          // src={`http://localhost:4444/${imageUrl}`}
+          // src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
+          src={`http://localhost:4444/${imageUrl}`}
           alt={`${dollName}`}
         />
       </div>

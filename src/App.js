@@ -18,18 +18,33 @@ import { ToastContainer } from "react-toastify";
 import { OrderHistory } from "./pages/OrderHistory";
 import { OrderDetails } from "./pages/OrderDetails";
 import { addProduct } from "./redux/slices/cart";
-import OnTopScrollButton from "./components/onTopScrollButton";
+import OnTopScrollButton from "./components/OnTopScrollButton";
 // import { EditProfile } from "./pages/EditProfile";
 function App() {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
   const isAuth = useSelector(selectIsAuth);
+
   React.useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);
+
   React.useEffect(() => {
     const cartFromStorage = JSON.parse(localStorage.getItem("cart") || "[]");
     cartFromStorage.forEach((item) => dispatch(addProduct(item)));
+
+    const token = localStorage.getItem("token");
+    const expirationDate = localStorage.getItem("expirationDate");
+
+    if (token && expirationDate) {
+      const currentTime = new Date().getTime();
+      const expiresIn = new Date(expirationDate).getTime() - currentTime;
+      if (expiresIn <= 0) {
+        // Token has expired, remove it from local storage
+        localStorage.removeItem("token");
+        localStorage.removeItem("tokenExpiration");
+      }
+    }
   }, [dispatch]);
 
   React.useEffect(() => {

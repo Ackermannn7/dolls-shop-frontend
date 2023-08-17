@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import App from "./App";
-import ScrollToTop from "./ScrollToTop";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import store from "./redux/store";
@@ -27,8 +26,6 @@ i18next.init({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
-    <ScrollToTop />
-
     <Provider store={store}>
       <I18nextProvider i18n={i18next}>
         <App />

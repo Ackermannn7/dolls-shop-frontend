@@ -32,7 +32,6 @@ export const Login = () => {
   });
   const onSubmit = async (values) => {
     const data = await dispatch(fetchLogin(values));
-
     if (!data.payload) {
       return toast.error(t("toastify.loginFailure"), {
         position: "top-right",
@@ -47,6 +46,10 @@ export const Login = () => {
     }
     if ("token" in data.payload) {
       window.localStorage.setItem("token", data.payload.token);
+      window.localStorage.setItem(
+        "expirationDate",
+        data.payload.expirationDate
+      );
       toast.success(`${t("toastify.loginSuccess")} ${data.payload.fullName}!`, {
         position: "top-right",
         autoClose: 5000,

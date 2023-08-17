@@ -92,8 +92,8 @@ export const Register = () => {
     const userData = await dispatch(
       fetchRegister({
         ...values,
-        avatarUrl: `${process.env.REACT_APP_API_URL}${data.url}`,
-        // avatarUrl: fileName && `http://localhost:4444/${data.url}`,
+        // avatarUrl: `${process.env.REACT_APP_API_URL}${data.url}`,
+        avatarUrl: fileName && `http://localhost:4444/${data.url}`,
       })
     );
 
