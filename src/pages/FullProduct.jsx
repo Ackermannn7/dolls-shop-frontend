@@ -91,8 +91,8 @@ export const FullProduct = () => {
               <h2 className="product-title">{data.dollName}</h2>
               <div className="product-image">
                 <img
-                  // src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
-                  src={`http://localhost:4444/${data.imageUrl}`}
+                  src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
+                  // src={`http://localhost:4444/${data.imageUrl}`}
                   alt={data.dollName}
                 />
               </div>
@@ -109,8 +109,8 @@ export const FullProduct = () => {
           <div className="product">
             <div className="product-image">
               <img
-                // src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
-                src={`http://localhost:4444/${data.imageUrl}`}
+                src={`${process.env.REACT_APP_API_URL}${data.imageUrl}`}
+                // src={`http://localhost:4444/${data.imageUrl}`}
                 alt={data.dollName}
               />
             </div>
