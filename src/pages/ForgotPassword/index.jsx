@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate, Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -9,19 +9,16 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
 
-import styles from "./Login.module.scss";
-import { fetchLogin, selectIsAuth } from "../../redux/slices/authorization";
+import styles from "./ForgotPassword.module.scss";
+import {
+  fetchForgotPassword,
+  selectIsAuth,
+} from "../../redux/slices/authorization";
 import { useTranslation } from "react-i18next";
 
-export const Login = () => {
+export const ForgotPassword = () => {
   const [t, i18n] = useTranslation("global");
-
-  const passwordValidation = (value) => {
-    if (value && value.length < 8) {
-      return t("registerForm.passwordLength");
-    }
-    return true;
-  };
+  const navigate = useNavigate();
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   const {
@@ -31,10 +28,11 @@ export const Login = () => {
   } = useForm({
     mode: "onChange",
   });
-  const onSubmit = async (values) => {
-    const data = await dispatch(fetchLogin(values));
-    if (!data.payload) {
-      return toast.error(t("toastify.loginFailure"), {
+
+  const onSubmit = async (email) => {
+    const message = await dispatch(fetchForgotPassword(email));
+    if (!message.payload) {
+      return toast.error(t("toastify.messageFailure"), {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: true,
@@ -45,13 +43,9 @@ export const Login = () => {
         theme: "light",
       });
     }
-    if ("token" in data.payload) {
-      window.localStorage.setItem("token", data.payload.token);
-      window.localStorage.setItem(
-        "expirationDate",
-        data.payload.expirationDate
-      );
-      toast.success(`${t("toastify.loginSuccess")} ${data.payload.fullName}!`, {
+    toast.success(
+      `${t("toastify.messageWithResetPassword")} ${message.payload.email}!`,
+      {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: true,
@@ -60,8 +54,9 @@ export const Login = () => {
         draggable: false,
         progress: undefined,
         theme: "light",
-      });
-    }
+      }
+    );
+    navigate("/login");
   };
 
   if (isAuth) {
@@ -70,7 +65,7 @@ export const Login = () => {
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
-        {t("loginForm.title")}
+        {t("forgotPasswordForm.title")}
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
@@ -85,18 +80,7 @@ export const Login = () => {
           })}
           fullWidth
         />
-        <TextField
-          error={Boolean(errors.password?.message)}
-          helperText={errors.password?.message}
-          type="password"
-          {...register("password", {
-            required: t("loginForm.passwordMessage"),
-            validate: passwordValidation,
-          })}
-          className={styles.field}
-          label={t("registerForm.passwordLabel")}
-          fullWidth
-        />
+
         <Button
           disabled={!isValid}
           type="submit"
@@ -104,18 +88,16 @@ export const Login = () => {
           variant="contained"
           fullWidth
         >
-          {t("loginForm.loginBtn")}
+          {t("forgotPasswordForm.submitButton")}
         </Button>
       </form>
       <div className={styles.bottomText}>
-        <p>{t("loginForm.registerText")}</p>
-        <Link to="/register">
-          <p className={styles.bottomLink}>{t("loginForm.registerLink")}</p>
+        <Link to="/login">
+          <p className={styles.bottomLink}>
+            {t("forgotPasswordForm.getBackLink")}
+          </p>
         </Link>
       </div>
-      <Link to="/forgotPassword">
-        <p className={styles.forgotPassword}>{t("loginForm.forgotPassword")}</p>
-      </Link>
     </Paper>
   );
 };

@@ -97,6 +97,7 @@
     "passwordMessage": "Enter your password",
     "loginBtn": "LOG IN",
     "registerText": "Don't have an account?",
+    "forgotPassword": "Forgot Password?",
     "registerLink": "Sign up"
   },
   "registerForm": {
@@ -112,6 +113,16 @@
     "registerBtn": "SIGN UP",
     "loginText": "Already have an account?",
     "loginLink": "Log in"
+  },
+  "forgotPasswordForm": {
+    "title": "To reset your password please enter your email to get a reset link!",
+    "submitButton": "Send Recovery Email",
+    "getBackLink": "Back"
+  },
+  "resetPassword": {
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "submitButton": "Reset"
   },
   "profilePage": {
     "changeBtn": "Change Profile",
@@ -151,9 +162,16 @@
     "addToCartSuccess": "The doll was added to your cart!",
     "loginFailure": "Incorrect Login or password!",
     "loginSuccess": "Wellcome, ",
+    "messageWithResetPassword": "The reovery email was sent to ",
+    "messageFailure": "It seems like this email does not exist!",
     "imageUploadError": "Error uploading image!",
     "orderDetailsError": "Error getting order details!",
     "registrationFailure": "Couldn`t sign up!",
-    "registrationSuccess": "Wellcome, "
+    "registrationSuccess": "Wellcome, ",
+    "resetPasswordFailure": "Couldn`t reset password!",
+    "resetPasswordSuccess": "Password was reset successfully!"
+  },
+  "validation": {
+    "newPasswordMatch": "This password does not match you new password!"
   }
 }

@@ -83,11 +83,10 @@ export const Register = () => {
   });
 
   const onSubmit = async (values) => {
-    let data = {};
     if (fileName) {
       const formData = new FormData();
       formData.append("image", fileName);
-      data = await axios.post("/upload", formData);
+      await axios.post("/upload", formData);
     }
     const userData = await dispatch(
       fetchRegister({

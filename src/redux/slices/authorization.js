@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../axios";
-
 export const fetchLogin = createAsyncThunk(
   "auth/fetchLogin",
   async (params) => {
@@ -8,6 +7,29 @@ export const fetchLogin = createAsyncThunk(
     return data;
   }
 );
+
+export const fetchForgotPassword = createAsyncThunk(
+  "auth/fetchForgotPassword",
+  async (email) => {
+    const response = await axios.post("/auth/forgotPassword", email);
+    console.log(response.data); // Убедитесь, что это содержит ваше сообщение
+    return response.data; // Верните только данные, которые вам нужны
+  }
+);
+
+export const fetchResetPassword = createAsyncThunk(
+  "auth/fetchResetPassword",
+  async (data) => {
+    console.log(data);
+
+    const { token } = data; // Извлекаем токен из объекта data
+
+    const response = await axios.put(`/auth/resetPassword/${token}`, data);
+    console.log(response.data);
+    return response.data;
+  }
+);
+
 export const fetchLogout = createAsyncThunk(
   "auth/fetchLogout",
   async (params) => {
@@ -29,6 +51,7 @@ export const fetchRegister = createAsyncThunk(
 );
 const initialState = {
   data: null,
+  response: null,
   status: "loading",
 };
 
@@ -54,6 +77,34 @@ const authSlice = createSlice({
     [fetchLogin.rejected]: (state) => {
       state.status = "error";
       state.data = null;
+    },
+    [fetchForgotPassword.pending]: (state) => {
+      state.status = "loading";
+      state.response = null;
+    },
+
+    [fetchForgotPassword.fulfilled]: (state, action) => {
+      state.status = "loaded";
+      state.response = action.payload;
+    },
+
+    [fetchForgotPassword.rejected]: (state, action) => {
+      state.status = "error";
+      state.response = action.payload;
+    },
+    [fetchResetPassword.pending]: (state) => {
+      state.status = "loading";
+      state.response = null;
+    },
+
+    [fetchResetPassword.fulfilled]: (state, action) => {
+      state.status = "loaded";
+      state.response = action.payload;
+    },
+
+    [fetchResetPassword.rejected]: (state, action) => {
+      state.status = "error";
+      state.response = action.payload;
     },
     [fetchLogout.pending]: (state) => {
       state.status = "loading";

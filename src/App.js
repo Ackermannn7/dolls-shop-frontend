@@ -19,6 +19,8 @@ import { OrderHistory } from "./pages/OrderHistory";
 import { OrderDetails } from "./pages/OrderDetails";
 import { addProduct } from "./redux/slices/cart";
 import OnTopScrollButton from "./components/OnTopScrollButton";
+import { ForgotPassword } from "./pages/ForgotPassword";
+import { ResetPassword } from "./pages/ResetPassword";
 // import { EditProfile } from "./pages/EditProfile";
 function App() {
   const dispatch = useDispatch();
@@ -68,6 +70,8 @@ function App() {
           <Route path="/orderHistory" element={<OrderHistory />} />
           <Route path="/order/:id" element={<OrderDetails />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
+          <Route path="/resetPassword/:token" element={<ResetPassword />} />
           <Route path="/register" element={<Register />} />
         </Routes>
       </div>

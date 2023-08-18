@@ -97,7 +97,18 @@
     "passwordMessage": "Введіть свій пароль",
     "loginBtn": "УВІЙТИ",
     "registerText": "Немає облікового запису?",
+    "forgotPassword": "Забули пароль?",
     "registerLink": "Зареєструватися"
+  },
+  "forgotPasswordForm": {
+    "title": "Введіть будь ласка свою пошту, для отримання посилання на скидання паролю!",
+    "submitButton": "Відправити листа",
+    "getBackLink": "Назад"
+  },
+  "resetPassword": {
+    "newPassword": "Новий пароль",
+    "confirmPassword": "Повторіть пароль",
+    "submitButton": "Змінити"
   },
   "registerForm": {
     "title": "Реєстрація",
@@ -148,9 +159,13 @@
     "addToCartSuccess": "Товар було додано у ваш кошик!",
     "loginFailure": "Невірний логін або пароль!",
     "loginSuccess": "Ласкаво просимо, ",
+    "messageWithResetPassword": "Лист з відновленням було надіслано на ",
+    "messageFailure": "Схоже ця пошта не існує!",
     "imageUploadError": "Помилка при завантаженні зображення!",
     "orderDetailsError": "Помилка при отриманні деталей замовлення!",
     "registrationFailure": "Не вдалося зареєструватися!",
-    "registrationSuccess": "Ласкаво просимо, "
+    "registrationSuccess": "Ласкаво просимо, ",
+    "resetPasswordFailure": "Не вдалося змінити пароль!",
+    "resetPasswordSuccess": "Пароль було успішно відновлено!"
   }
 }
