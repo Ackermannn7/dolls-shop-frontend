@@ -117,7 +117,7 @@ export const Register = () => {
     if ("token" in userData.payload) {
       window.localStorage.setItem("token", userData.payload.token);
       toast.success(
-        `${t("toastify.registrationSuccess")}, ${userData.payload.fullName}!`,
+        `${t("toastify.registrationSuccess")}${userData.payload.fullName}!`,
         {
           position: "top-right",
           autoClose: 3000,

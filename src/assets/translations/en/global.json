@@ -162,7 +162,7 @@
     "addToCartSuccess": "The doll was added to your cart!",
     "loginFailure": "Incorrect Login or password!",
     "loginSuccess": "Wellcome, ",
-    "messageWithResetPassword": "The reovery email was sent to ",
+    "messageWithResetPassword": "The recovery email was sent to ",
     "messageFailure": "It seems like this email does not exist!",
     "imageUploadError": "Error uploading image!",
     "orderDetailsError": "Error getting order details!",
