@@ -95,7 +95,6 @@ export const Register = () => {
         // avatarUrl: `http://localhost:4444/avatars/${fileName.name}`,
       })
     );
-
     if (inputFileRef.current) {
       setSelectedImage("");
       setFileName("");
@@ -186,7 +185,10 @@ export const Register = () => {
           error={Boolean(errors.email?.message)}
           helperText={errors.email?.message}
           type="email"
-          {...register("email", { required: t("registerForm.emailMessage") })}
+          {...register("email", {
+            required: t("registerForm.emailMessage"),
+            setValueAs: (value) => value.toLowerCase(),
+          })}
           className={styles.field}
           label={t("registerForm.emailLabel")}
           fullWidth
@@ -203,15 +205,6 @@ export const Register = () => {
           label={t("registerForm.passwordLabel")}
           fullWidth
         />
-        {/* <TextField
-          error={Boolean(errors.password?.message)}
-          helperText={errors.password?.message}
-          type="password"
-          {...register("password", { required: "Enter your password" })}
-          className={styles.field}
-          label="Password"
-          fullWidth
-        /> */}
 
         <Button
           disabled={!isValid}
